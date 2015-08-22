@@ -82,4 +82,19 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1;
 		Application.LoadLevel( level );
 	}
+
+	public void DisplayVictory( Object winner, int playerID )
+	{
+		string playerName = PlayerPrefs.GetString( "Player" + playerID, "Player " + playerID );
+		if ( playerName == "" )
+			playerName = "Player " + playerID;
+		if ( winner.GetType() == typeof(MonsterController) )
+		{
+			Debug.Log("Monster " + playerName + " wins !" );
+		}
+		else
+		{
+			Debug.Log("Human " + playerName + " wins !" );
+        }
+	}
 }

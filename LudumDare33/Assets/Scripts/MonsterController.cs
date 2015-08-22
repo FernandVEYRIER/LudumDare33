@@ -13,7 +13,7 @@ public class MonsterController : BasicController {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	protected override void FixedUpdate () {
 	
 		base.FixedUpdate();
 		if (Input.GetAxis ("Jump") != 0 && !timerJumpWall && !timerJump && wallJump.GetComponent<WallJump>().getWallJump()) {
@@ -33,7 +33,7 @@ public class MonsterController : BasicController {
 		timerJumpWall = false;
 	}
 
-	protected void Attack()
+	protected override void Attack()
 	{
 		base.Attack();
 		Debug.Log( wallJump.GetComponent<WallJump>().CollidedObj );
@@ -41,7 +41,7 @@ public class MonsterController : BasicController {
 			return;
 		if ( wallJump.GetComponent<WallJump>().CollidedObj.tag == "Player" )
 		{
-			Debug.Log ("DIE");
+			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().DisplayVictory( this, 1 );
 		}
 	}
 }

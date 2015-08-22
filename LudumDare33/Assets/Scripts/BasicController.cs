@@ -39,16 +39,14 @@ public abstract class BasicController : MonoBehaviour {
 			attackCurrentDelay -= Time.deltaTime;
 	}
 	
-	protected void FixedUpdate () {
+	protected virtual void FixedUpdate () {
 
 		if ( jump.GetComponent<Jump>().getCanJump() )
 		{
-			Debug.Log("can jump");
 			animator.SetBool( animIsGrounded, true );
 		}
 		else
 		{
-			Debug.Log("cant jump");
 			animator.SetBool( animIsGrounded, false );
 		}
 
@@ -93,7 +91,7 @@ public abstract class BasicController : MonoBehaviour {
 		timerJump = false;
 	}
 
-	protected void Attack()
+	protected virtual void Attack()
 	{
 		attackCurrentDelay = attackDelay;
 		animator.SetTrigger( animAttack );
