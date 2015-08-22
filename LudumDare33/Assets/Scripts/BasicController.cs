@@ -41,6 +41,7 @@ public abstract class BasicController : MonoBehaviour {
 	
 	protected virtual void FixedUpdate () {
 
+		#region Cette région s'occupe de la gestion des animations
 		if ( jump.GetComponent<Jump>().getCanJump() )
 		{
 			animator.SetBool( animIsGrounded, true );
@@ -57,6 +58,7 @@ public abstract class BasicController : MonoBehaviour {
 
 		animator.SetFloat( animHorizontalVel, Input.GetAxis ("Horizontal") );
 		animator.SetFloat( animVerticalVel, Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.y ));
+		#endregion
 
 		if (jump.GetComponent<Jump>().getCanJump() && Input.GetAxis ("Jump") != 0 && !timerJump) {
 		    StartCoroutine("timer_jump");

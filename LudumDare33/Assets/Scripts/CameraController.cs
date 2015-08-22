@@ -47,9 +47,13 @@ public class CameraController : MonoBehaviour {
 	{
 		if ( col.gameObject.tag == "Monster" )
 		{
-			Debug.Log("should respawn monster");
 			Destroy( col.gameObject );
-			Debug.Log(this.transform.GetComponentInChildren<TryRespawnPawn>().HasToRespawnPlayer = 2);
+			Debug.Log(this.transform.GetChild(1).gameObject.GetComponent<TryRespawnPawn>().HasToRespawnPlayer = 2);
+		}
+		else if ( col.gameObject.tag == "Player" )
+		{
+			Destroy( col.gameObject );
+			this.transform.GetChild(2).gameObject.GetComponentInChildren<TryRespawnPawn>().HasToRespawnPlayer = 1;
 		}
 	}
 }

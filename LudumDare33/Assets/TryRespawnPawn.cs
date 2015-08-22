@@ -5,9 +5,16 @@ public class TryRespawnPawn : MonoBehaviour {
 
 	public GameObject playerPrefab;
 	public GameObject monsterPrefab;
+	public float respawnDelay;
 
 	private int hasToRespawnPlayer;
 	private Vector3 lastValidPlateform;
+	private float timeUntilSpawn;
+
+	void Start()
+	{
+		timeUntilSpawn = respawnDelay;
+	}
 
 	void OnTriggerEnter2D( Collider2D col )
 	{
@@ -19,19 +26,27 @@ public class TryRespawnPawn : MonoBehaviour {
 	{
 		if ( hasToRespawnPlayer != 0 )
 		{
-			if ( lastValidPlateform != Vector3.zero )
+			timeUntilSpawn -= Time.deltaTime;
+			if ( timeUntilSpawn <= 0 )
 			{
-				if ( hasToRespawnPlayer == 1 )
+				if ( lastValidPlateform != Vector3.zero )
 				{
-					Instantiate( playerPrefab, lastValidPlateform, Quaternion.identity );
+					if ( hasToRespawnPlayer == 1 )
+					{
+						Instantiate( playerPrefab, lastValidPlateform, Quaternion.identity );
+					}
+					else
+					{
+						Instantiate( monsterPrefab, lastValidPlateform, Quaternion.identity );
+					}
+					hasToRespawnPlayer = 0;
+					lastValidPlateform = Vector3.zero;
 				}
-				else
-				{
-					Instantiate( monsterPrefab, lastValidPlateform, Quaternion.identity );
-				}
-				hasToRespawnPlayer = 0;
-				lastValidPlateform = Vector3.zero;
 			}
+		}
+		else
+		{
+			timeUntilSpawn = respawnDelay;
 		}
 	}
 
