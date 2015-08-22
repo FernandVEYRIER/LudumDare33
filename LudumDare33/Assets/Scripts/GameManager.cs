@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject canvasPause;
 	public GameObject canvasPauseButton;
 	public Slider canvasPauseSound;
+	public Text countdownText;
 	public EventSystem es;
 
 
@@ -20,7 +21,10 @@ public class GameManager : MonoBehaviour {
 	{
 		canvasPauseSound.value = PlayerPrefs.GetFloat( "MasterVolume", 1 );
 		canvasPause.SetActive( false );
-		isResumingGame = false;
+
+		Time.timeScale = 0;
+		currentElapsedTime = Time.realtimeSinceStartup + resumeDelay;
+        isResumingGame = true;
 	}
 	
 	// Update is called once per frame
@@ -37,22 +41,26 @@ public class GameManager : MonoBehaviour {
 			if ( currentElapsedTime - Time.realtimeSinceStartup > 0 )
 			{
 				if ( currentElapsedTime - Time.realtimeSinceStartup > 2 )
-					Debug.Log("3");
+					countdownText.text = "3";
 				else if ( currentElapsedTime - Time.realtimeSinceStartup > 1 )
-					Debug.Log("2");
+					countdownText.text = "2";
 				else
-					Debug.Log("1");
+					countdownText.text = "1";
 			}
 			else
 			{
 				isResumingGame = false;
 				Time.timeScale = 1;
+				countdownText.text = "";
 			}
 		}
 	}
 
 	public void SetPause()
 	{
+		// Si la pause est en train d'etre enlevée, on ne peut pas mettre la pause
+		if ( isResumingGame )
+			return;
 		if ( canvasPause.activeSelf )
 		{
 			PlayerPrefs.SetFloat( "MasterVolume", canvasPauseSound.value );
@@ -70,7 +78,8 @@ public class GameManager : MonoBehaviour {
 
 	public void LoadLevel( int level )
 	{
-		Time.timeScale = 1;
+		PlayerPrefs.SetFloat( "MasterVolume", canvasPauseSound.value );
+        Time.timeScale = 1;
 		Application.LoadLevel( level );
 	}
 }
