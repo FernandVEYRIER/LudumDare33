@@ -5,14 +5,20 @@ public abstract class BasicController : MonoBehaviour {
 
 	public float jump_strenght = 0;
 	public float horizontal_strenght = 0;
+	protected float attackDelay = 0.3f;
+
 	protected bool timerJump = false;
 	protected GameObject jump;
 	protected bool WallJump = false;
 
 	protected Animator animator;
+
 	private int animVerticalVel;
 	private int animHorizontalVel;
 	private int animIsGrounded;
+	private int animAttack;
+
+	private float attackCurrentDelay;
 	
 	void Awake () 
 	{
@@ -22,6 +28,15 @@ public abstract class BasicController : MonoBehaviour {
 		animVerticalVel = Animator.StringToHash( "VerticalVel" );
 		animHorizontalVel = Animator.StringToHash( "HorizontalVel" );
 		animIsGrounded = Animator.StringToHash( "isGrounded" );
+		animAttack = Animator.StringToHash( "Attack" );
+
+		attackCurrentDelay = 0;
+	}
+
+	void Update()
+	{
+		if ( attackCurrentDelay > 0 )
+			attackCurrentDelay -= Time.deltaTime;
 	}
 	
 	protected void FixedUpdate () {
@@ -43,7 +58,6 @@ public abstract class BasicController : MonoBehaviour {
         }
 
 		animator.SetFloat( animHorizontalVel, Input.GetAxis ("Horizontal") );
-		Debug.Log( Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.y));
 		animator.SetFloat( animVerticalVel, Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.y ));
 
 		if (jump.GetComponent<Jump>().getCanJump() && Input.GetAxis ("Jump") != 0 && !timerJump) {
@@ -65,6 +79,11 @@ public abstract class BasicController : MonoBehaviour {
 		} else if (Input.GetAxis ("Horizontal") > 0) {
 			this.transform.localScale = new Vector2(-1, 1);
 		}
+
+		if ( Input.GetAxis( "Fire1" ) == 1 && attackCurrentDelay <= 0 )
+		{
+			Attack();
+		}
 	}
 
 	IEnumerator timer_jump() {
@@ -72,5 +91,11 @@ public abstract class BasicController : MonoBehaviour {
 		timerJump = true;
 		yield return new WaitForSeconds (0.07f);
 		timerJump = false;
+	}
+
+	protected void Attack()
+	{
+		attackCurrentDelay = attackDelay;
+		animator.SetTrigger( animAttack );
 	}
 }

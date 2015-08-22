@@ -1,14 +1,17 @@
 fileFormatVersion: 2
-guid: 8584d641b713a0f4e9346482e29446b2
-timeCreated: 1440262410
+guid: e394340b2969c864384325bb32adc977
+timeCreated: 1440267380
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: monster_jump_sheet_0
-    21300002: monster_jump_sheet_1
-    21300004: monster_jump_sheet_2
-    21300006: monster_jump_sheet_3
-    21300008: monster_jump_sheet_4
+    21300000: monster_attack_sheet_0
+    21300002: monster_attack_sheet_1
+    21300004: monster_attack_sheet_2
+    21300006: monster_attack_sheet_3
+    21300008: monster_attack_sheet_4
+    21300010: monster_attack_sheet_5
+    21300012: monster_attack_sheet_6
+    21300014: monster_attack_sheet_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -34,7 +37,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 1
+    filterMode: -1
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -54,7 +57,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: monster_jump_sheet_0
+    - name: monster_attack_sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -64,7 +67,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: monster_jump_sheet_1
+    - name: monster_attack_sheet_1
       rect:
         serializedVersion: 2
         x: 500
@@ -74,7 +77,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: monster_jump_sheet_2
+    - name: monster_attack_sheet_2
       rect:
         serializedVersion: 2
         x: 1000
@@ -84,7 +87,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: monster_jump_sheet_3
+    - name: monster_attack_sheet_3
       rect:
         serializedVersion: 2
         x: 1500
@@ -94,10 +97,40 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: monster_jump_sheet_4
+    - name: monster_attack_sheet_4
       rect:
         serializedVersion: 2
         x: 0
+        y: 86
+        width: 500
+        height: 469
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: monster_attack_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 86
+        width: 500
+        height: 469
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: monster_attack_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 86
+        width: 500
+        height: 469
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: monster_attack_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 1500
         y: 86
         width: 500
         height: 469
