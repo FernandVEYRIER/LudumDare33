@@ -8,16 +8,45 @@ public abstract class BasicController : MonoBehaviour {
 	protected bool timerJump = false;
 	protected GameObject jump;
 	protected bool WallJump = false;
-	// Use this for initialization
-	void Awake () {
+
+	protected Animator animator;
+	private int animVerticalVel;
+	private int animHorizontalVel;
+	private int animIsGrounded;
+	
+	void Awake () 
+	{
 		jump = this.transform.GetChild (0).gameObject;
+		animator = this.GetComponent<Animator>();
+
+		animVerticalVel = Animator.StringToHash( "VerticalVel" );
+		animHorizontalVel = Animator.StringToHash( "HorizontalVel" );
+		animIsGrounded = Animator.StringToHash( "isGrounded" );
 	}
 	
-	// Update is called once per frame
 	protected void FixedUpdate () {
 
-		if (jump.GetComponent<Jump>().getCanJump() && Input.GetAxis ("Jump") != 0 && !timerJump) {
+		if ( jump.GetComponent<Jump>().getCanJump() )
+		{
+			Debug.Log("can jump");
+			animator.SetBool( animIsGrounded, true );
+		}
+		else
+		{
+			Debug.Log("cant jump");
+			animator.SetBool( animIsGrounded, false );
+		}
+
+		if ( jump.GetComponent<Jump>().Landed )
+		{
 			Camera.main.transform.parent.GetComponent<CameraController>().PlayShakeAnim();
+        }
+
+		animator.SetFloat( animHorizontalVel, Input.GetAxis ("Horizontal") );
+		Debug.Log( Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.y));
+		animator.SetFloat( animVerticalVel, Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.y ));
+
+		if (jump.GetComponent<Jump>().getCanJump() && Input.GetAxis ("Jump") != 0 && !timerJump) {
 		    StartCoroutine("timer_jump");
 			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jump_strenght));
 		}
