@@ -19,7 +19,6 @@ public class TryRespawnPawn : MonoBehaviour {
 	{
 		if ( hasToRespawnPlayer != 0 )
 		{
-			Debug.Log (lastValidPlateform);
 			if ( lastValidPlateform != Vector3.zero )
 			{
 				if ( hasToRespawnPlayer == 1 )
