@@ -17,7 +17,8 @@ public abstract class BasicController : MonoBehaviour {
 	protected void FixedUpdate () {
 
 		if (jump.GetComponent<Jump>().getCanJump() && Input.GetAxis ("Jump") != 0 && !timerJump) {
-		     StartCoroutine("timer_jump");
+			Camera.main.transform.parent.GetComponent<CameraController>().PlayShakeAnim();
+		    StartCoroutine("timer_jump");
 			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jump_strenght));
 		}
 		if (jump.GetComponent<Jump> ().getCanJump ()) {
