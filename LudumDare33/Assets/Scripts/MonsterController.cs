@@ -7,6 +7,13 @@ public class MonsterController : BasicController {
 	private GameObject head;
 	private bool timerJumpWall = false;
 	// Use this for initialization
+
+	protected override void Awake()
+	{
+		playerID = 2;
+		base.Awake();
+	}
+
 	void Start () {
 		wallJump = this.transform.GetChild (1).gameObject;
 		head = this.transform.GetChild (2).gameObject;
@@ -16,7 +23,7 @@ public class MonsterController : BasicController {
 	protected override void FixedUpdate () {
 	
 		base.FixedUpdate();
-		if (Input.GetAxis ("Jump") != 0 && !timerJumpWall && !timerJump && wallJump.GetComponent<WallJump>().getWallJump()) {
+		if (Input.GetAxis (keyBinds["Jump"]) != 0 && !timerJumpWall && !timerJump && wallJump.GetComponent<WallJump>().getWallJump()) {
 			StartCoroutine("timer_jump_wall");
 			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(200 * this.transform.localScale.x, 500));

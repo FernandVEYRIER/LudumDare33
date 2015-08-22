@@ -1,11 +1,18 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public abstract class BasicController : MonoBehaviour {
 
 	public float jump_strenght = 0;
 	public float horizontal_strenght = 0;
 	protected float attackDelay = 0.3f;
+
+	// Contient tous les binds pour chaque joueur
+	protected Dictionary<string, string> keyBinds;
+	private List<string> imputName;
+
+	private int _playerID;
 
 	protected bool timerJump = false;
 	protected GameObject jump;
@@ -20,7 +27,7 @@ public abstract class BasicController : MonoBehaviour {
 
 	private float attackCurrentDelay;
 	
-	void Awake () 
+	protected virtual void Awake () 
 	{
 		jump = this.transform.GetChild (0).gameObject;
 		animator = this.GetComponent<Animator>();
@@ -31,12 +38,46 @@ public abstract class BasicController : MonoBehaviour {
 		animAttack = Animator.StringToHash( "Attack" );
 
 		attackCurrentDelay = 0;
+
+		imputName = new List<string>();
+		imputName.Add( "Fire1" );
+		imputName.Add( "Jump" );
+		imputName.Add( "Horizontal" );
+		// Player ID est initialisé dans les classes enfant
+		SetKeyBinds( _playerID );
+	}
+
+	public void SetKeyBinds( int characterID )
+	{
+		if ( characterID == 1 )
+		{
+			Debug.Log("P1 settings");
+			keyBinds = new Dictionary<string, string>();
+			foreach ( string str in imputName )
+			{
+				keyBinds.Add( str, str );
+			}
+		}
+		else
+		{
+			Debug.Log("P2 settings");
+			keyBinds = new Dictionary<string, string>();
+			foreach ( string str in imputName )
+			{
+				keyBinds.Add( str, str + "Alt" );
+			}
+		}
 	}
 
 	void Update()
 	{
 		if ( attackCurrentDelay > 0 )
 			attackCurrentDelay -= Time.deltaTime;
+
+		if ( Input.GetKeyDown( KeyCode.F12 ) )
+			SetKeyBinds(1);
+		if ( Input.GetKeyDown( KeyCode.F11 ) )
+			SetKeyBinds(2);
 	}
 	
 	protected virtual void FixedUpdate () {
@@ -56,31 +97,31 @@ public abstract class BasicController : MonoBehaviour {
 			Camera.main.transform.parent.GetComponent<CameraController>().PlayShakeAnim();
         }
 
-		animator.SetFloat( animHorizontalVel, Input.GetAxis ("Horizontal") );
+		animator.SetFloat( animHorizontalVel, Input.GetAxis (keyBinds[("Horizontal")] ) );
 		animator.SetFloat( animVerticalVel, Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.y ));
 		#endregion
 
-		if (jump.GetComponent<Jump>().getCanJump() && Input.GetAxis ("Jump") != 0 && !timerJump) {
+		if (jump.GetComponent<Jump>().getCanJump() && Input.GetAxis (keyBinds["Jump"]) != 0 && !timerJump) {
 		    StartCoroutine("timer_jump");
 			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jump_strenght));
 		}
 		if (jump.GetComponent<Jump> ().getCanJump ()) {
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, this.GetComponent<Rigidbody2D>().velocity.y);
 		}
-		if (Input.GetAxis ("Horizontal") != 0 && !jump.GetComponent<Jump> ().getCanJump () && !WallJump) {
+		if (Input.GetAxis (keyBinds["Horizontal"]) != 0 && !jump.GetComponent<Jump> ().getCanJump () && !WallJump) {
 
-			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis ("Horizontal") * 0.5f,0));	
+			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis (keyBinds["Horizontal"]) * 0.5f,0));	
 		}
-		if (Input.GetAxis ("Horizontal") != 0 && jump.GetComponent<Jump> ().getCanJump ()) {
-			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis ("Horizontal"),0));
+		if (Input.GetAxis (keyBinds["Horizontal"]) != 0 && jump.GetComponent<Jump> ().getCanJump ()) {
+			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis (keyBinds["Horizontal"]),0));
 		}
-		if (Input.GetAxis ("Horizontal") < 0) {
+		if (Input.GetAxis (keyBinds["Horizontal"]) < 0) {
 			this.transform.localScale = new Vector2(1, 1);
-		} else if (Input.GetAxis ("Horizontal") > 0) {
+		} else if (Input.GetAxis (keyBinds["Horizontal"]) > 0) {
 			this.transform.localScale = new Vector2(-1, 1);
 		}
 
-		if ( Input.GetAxis( "Fire1" ) == 1 && attackCurrentDelay <= 0 )
+		if ( Input.GetAxis( keyBinds["Fire1"] ) == 1 && attackCurrentDelay <= 0 )
 		{
 			Attack();
 		}
@@ -97,5 +138,20 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		attackCurrentDelay = attackDelay;
 		animator.SetTrigger( animAttack );
+	}
+
+	public int playerID
+	{
+		get
+		{
+			return _playerID;
+		}
+		set
+		{
+			if ( value != 1 && value != 2 )
+				_playerID = 1;
+			else
+				_playerID = value;
+		}
 	}
 }
