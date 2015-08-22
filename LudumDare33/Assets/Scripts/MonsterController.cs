@@ -36,7 +36,6 @@ public class MonsterController : BasicController {
 	protected override void Attack()
 	{
 		base.Attack();
-		Debug.Log( wallJump.GetComponent<WallJump>().CollidedObj );
 		if ( wallJump.GetComponent<WallJump>().CollidedObj == null )
 			return;
 		if ( wallJump.GetComponent<WallJump>().CollidedObj.tag == "Player" )

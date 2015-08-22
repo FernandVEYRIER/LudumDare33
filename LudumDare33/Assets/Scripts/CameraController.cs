@@ -6,10 +6,13 @@ public class CameraController : MonoBehaviour {
 	public 		int start;
 	public 		int end;
 	public		float speed;
-	private		float shake_decay = .005f;
-	private		float shake_intensity;
+	/*private		float shake_decay = .005f;
+	private		float shake_intensity;*/
 
 	private Animation shakeAnim;
+
+	public GameObject playerSpawnZone;
+	public GameObject monsterSpawnZone;
 
 	void Start () 
 	{
@@ -38,5 +41,15 @@ public class CameraController : MonoBehaviour {
 			transform.position = new Vector3(shake.x, transform.position.y + speed * Time.deltaTime, shake.z);
 			shake_intensity -= shake_decay;
 		}*/
+	}
+
+	void OnTriggerEnter2D( Collider2D col )
+	{
+		if ( col.gameObject.tag == "Monster" )
+		{
+			Debug.Log("should respawn monster");
+			Destroy( col.gameObject );
+			Debug.Log(this.transform.GetComponentInChildren<TryRespawnPawn>().HasToRespawnPlayer = 2);
+		}
 	}
 }
