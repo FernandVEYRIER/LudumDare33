@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class MenuManager : MonoBehaviour {
 	public GameObject [] buttons;
 	[Header("Pannels")]
 	public GameObject settingsPannel;
+	public InputField [] playerName;
+	public Slider soundVolume;
 
 	private int currentButtonSelected;
 
@@ -18,6 +21,10 @@ public class MenuManager : MonoBehaviour {
 		currentButtonSelected = 0;
 		ChangeSelectedButton( currentButtonSelected );
 		settingsPannel.SetActive( false );
+
+		soundVolume.value = PlayerPrefs.GetFloat( "MasterVolume", 1 );
+		playerName[0].text = PlayerPrefs.GetString( "Player1", "Player1" );
+		playerName[1].text = PlayerPrefs.GetString( "Player2", "Player2" );
 	}
 
 	public void ChangeSelectedButton( int id )
@@ -46,6 +53,10 @@ public class MenuManager : MonoBehaviour {
 	{
 		es.SetSelectedGameObject( buttons[1] );
 		DisplaySettings();
+
+		PlayerPrefs.SetFloat( "MasterVolume", soundVolume.value );
+		PlayerPrefs.SetString( "Player1", playerName[0].text );
+		PlayerPrefs.SetString( "Player2", playerName[1].text );
 	}
 
 	public void Quit()
