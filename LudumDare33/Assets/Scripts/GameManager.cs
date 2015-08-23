@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
 	public Text countdownP2;
 	public Text nameP1;
 	public Text nameP2;
+	public Image player1Sprite;
+	public Image player2Sprite;
 	public Image [] inventorySpriteP1;
 	public Image [] inventorySpriteP2;
 	public GameObject player1Cursor;
@@ -137,15 +139,7 @@ public class GameManager : MonoBehaviour {
 
 		if ( Input.GetKeyDown( KeyCode.F12 ) )
 		{
-			currentBindP1 = (currentBindP1 == 1) ? 2 : 1;
-			currentBindP2 = (currentBindP2 == 2) ? 1 : 2;
-			if ( player != null )
-				player.GetComponent<PlayerController>().SetKeyBinds( currentBindP1 );
-			if ( monster != null )
-				monster.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
-			cursorP1TargetID = (cursorP1TargetID == 1) ? 2 : 1;
-			cursorP2TargetID = (cursorP2TargetID == 1) ? 2 : 1;
-            isSwitchingCursor = true;
+			SwitchPlayers();
 		}
 
 		if ( Input.GetKeyDown( KeyCode.Joystick1Button9 ) || Input.GetKeyDown( KeyCode.Escape ) )
@@ -174,7 +168,30 @@ public class GameManager : MonoBehaviour {
 		}
 	}
 
-	public void SetPause()
+	public void SwitchPlayers()
+	{
+		Sprite _sprite;
+
+		// On change les binds
+		currentBindP1 = (currentBindP1 == 1) ? 2 : 1;
+		currentBindP2 = (currentBindP2 == 2) ? 1 : 2;
+		if ( player != null )
+			player.GetComponent<PlayerController>().SetKeyBinds( currentBindP1 );
+		if ( monster != null )
+			monster.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
+
+		// On change les targets des curseurs
+		cursorP1TargetID = (cursorP1TargetID == 1) ? 2 : 1;
+		cursorP2TargetID = (cursorP2TargetID == 1) ? 2 : 1;
+        isSwitchingCursor = true;
+
+		// Et on swap les sprites
+		_sprite = player1Sprite.sprite;
+		player1Sprite.sprite = player2Sprite.sprite;
+		player2Sprite.sprite = _sprite;
+    }
+    
+    public void SetPause()
 	{
 		// Si la pause est en train d'etre enlevée, on ne peut pas mettre la pause
 		if ( isResumingGame )

@@ -58,7 +58,7 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		if ( characterID == 1 )
 		{
-			Debug.Log("P1 settings");
+			//Debug.Log("P1 settings");
 			keyBinds = new Dictionary<string, string>();
 			foreach ( string str in imputName )
 			{
@@ -68,7 +68,7 @@ public abstract class BasicController : MonoBehaviour {
 		}
 		else if ( characterID == 2 )
 		{
-			Debug.Log("P2 settings");
+			//Debug.Log("P2 settings");
 			keyBinds = new Dictionary<string, string>();
 			foreach ( string str in imputName )
 			{
