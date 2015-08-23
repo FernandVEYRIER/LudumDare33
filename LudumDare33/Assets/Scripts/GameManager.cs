@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
 
 		canvasPauseSound.value = PlayerPrefs.GetFloat( "MasterVolume", 1 );
 		canvasPause.SetActive( false );
-		//canvasVictory.SetActive( false );
+		canvasVictory.SetActive( false );
 
 		Time.timeScale = 0;
 		currentElapsedTime = Time.realtimeSinceStartup + resumeDelay;
