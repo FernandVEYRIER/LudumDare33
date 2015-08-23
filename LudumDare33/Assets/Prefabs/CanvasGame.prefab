@@ -1013,6 +1013,8 @@ MonoBehaviour:
   - {fileID: 11467740}
   - {fileID: 11488308}
   - {fileID: 11484726}
+  player1Cursor: {fileID: 148066, guid: cc223a1cc9926374d8b039ecf97e62c9, type: 2}
+  player2Cursor: {fileID: 109802, guid: 80108bdbfd81a6f458e7f09545436332, type: 2}
   es: {fileID: 11441220}
 --- !u!114 &11433522
 MonoBehaviour:
@@ -1309,7 +1311,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: 
 --- !u!114 &11461310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1497,7 +1499,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 3
+  m_Text: 
 --- !u!114 &11478872
 MonoBehaviour:
   m_ObjectHideFlags: 1

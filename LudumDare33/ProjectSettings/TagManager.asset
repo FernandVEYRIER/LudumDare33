@@ -10,6 +10,8 @@ TagManager:
   - Monster
   - Destructable
   - item
+  - CursorP1
+  - CursorP2
   layers:
   - Default
   - TransparentFX
