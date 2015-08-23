@@ -12,7 +12,7 @@ public abstract class BasicController : MonoBehaviour {
 	protected Dictionary<string, string> keyBinds;
 	private List<string> imputName;
 
-	private int _playerID;
+	private int _playerID = 0;
 
 	protected bool timerJump = false;
 	protected GameObject jump;
@@ -44,7 +44,8 @@ public abstract class BasicController : MonoBehaviour {
 		imputName.Add( "Jump" );
 		imputName.Add( "Horizontal" );
 		// Player ID est initialisé dans les classes enfant
-		SetKeyBinds( _playerID );
+		if ( _playerID != 0 )
+			SetKeyBinds( _playerID );
 	}
 
 	public void SetKeyBinds( int characterID )
@@ -58,7 +59,7 @@ public abstract class BasicController : MonoBehaviour {
 				keyBinds.Add( str, str );
 			}
 		}
-		else
+		else if ( characterID == 2 )
 		{
 			Debug.Log("P2 settings");
 			keyBinds = new Dictionary<string, string>();
@@ -74,10 +75,10 @@ public abstract class BasicController : MonoBehaviour {
 		if ( attackCurrentDelay > 0 )
 			attackCurrentDelay -= Time.deltaTime;
 
-		if ( Input.GetKeyDown( KeyCode.F12 ) )
+		/*if ( Input.GetKeyDown( KeyCode.F12 ) )
 			SetKeyBinds(1);
 		if ( Input.GetKeyDown( KeyCode.F11 ) )
-			SetKeyBinds(2);
+			SetKeyBinds(2);*/
 	}
 	
 	protected virtual void FixedUpdate () {
