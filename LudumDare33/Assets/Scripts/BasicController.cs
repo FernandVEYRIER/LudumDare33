@@ -129,7 +129,7 @@ public abstract class BasicController : MonoBehaviour {
 			this.transform.localScale = new Vector2(scale * -1, this.transform.localScale.y);
 		}
 
-		if ( Input.GetAxis( keyBinds["Fire1"] ) == 1 && attackCurrentDelay <= 0)
+		if ( Input.GetAxis( keyBinds["Fire1"] ) == 1 && attackCurrentDelay <= 0 )
 		{
 			Attack();
 		}

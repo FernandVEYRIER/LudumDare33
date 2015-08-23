@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour {
 		if ( col.gameObject.tag == "Monster" )
 		{
 			Destroy( col.gameObject );
-			Debug.Log(this.transform.GetChild(1).gameObject.GetComponent<TryRespawnPawn>().HasToRespawnPlayer = 2);
+			this.transform.GetChild(1).gameObject.GetComponent<TryRespawnPawn>().HasToRespawnPlayer = 2;
 		}
 		else if ( col.gameObject.tag == "Player" )
 		{
