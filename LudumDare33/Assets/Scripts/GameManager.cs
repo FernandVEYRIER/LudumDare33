@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour {
 
 		go = (GameObject) Instantiate( player, position, Quaternion.identity );
 		if ( playerType == 1 )
-			go.GetComponent<MonsterController>().SetKeyBinds( currentBindP1 );
+			go.GetComponent<PlayerController>().SetKeyBinds( currentBindP1 );
         else if ( playerType == 2 )
 			go.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
     }

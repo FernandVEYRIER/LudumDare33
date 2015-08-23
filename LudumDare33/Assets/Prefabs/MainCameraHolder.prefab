@@ -299,6 +299,7 @@ MonoBehaviour:
   start: 0
   end: 100
   speed: 0
+  smoke: {fileID: 108184, guid: 191a1da14b18fa44ca029403a83e4cd0, type: 2}
   playerSpawnZone: {fileID: 198490}
   monsterSpawnZone: {fileID: 186066}
 --- !u!124 &12474600
@@ -314,7 +315,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: smoke
+      value: 
+      objectReference: {fileID: 108184, guid: 191a1da14b18fa44ca029403a83e4cd0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 185868}
