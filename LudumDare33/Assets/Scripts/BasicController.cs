@@ -156,6 +156,18 @@ public abstract class BasicController : MonoBehaviour {
 		isDead = true;
 	}
 
+	public bool IsDead
+	{
+		get
+		{
+			return isDead;
+		}
+		set
+		{
+			isDead = value;
+		}
+	}
+
 	public int playerID
 	{
 		get

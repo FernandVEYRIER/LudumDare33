@@ -31,6 +31,7 @@ public class MapGenerator : MonoBehaviour {
 
 		int max = templates.Length;
 		int nb_templates = Random.Range(5, max);
+		GameObject.Find("MainCameraHolder").GetComponent<CameraController>().end = (int) nb_templates * (int) base_template.GetComponent<SpriteRenderer>().bounds.size.y;
 		for (int i = 0; i < max; i++) {
 			base_templates_id.Add(i);
 		}

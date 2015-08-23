@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour {
 	private int cursorP1TargetID;
 	private int cursorP2TargetID;
 
+	private bool isGameRunning;
+
 	void Start () 
 	{
 		currentBindP1 = 1;
@@ -78,6 +80,8 @@ public class GameManager : MonoBehaviour {
 
 		cursorP1TargetID = 1;
 		cursorP2TargetID = 2;
+
+		isGameRunning = true;
 	}
 
 	public void SpawnPlayer( Object player, Vector3 position, int playerType )
@@ -145,6 +149,14 @@ public class GameManager : MonoBehaviour {
 				                                                              targetCursor2, ref currentVelCursorP2, 0.12f );
 			}
         //}
+
+		if ( !isGameRunning )
+		{
+			if ( player != null )
+				player.GetComponent<PlayerController>().IsDead = true;
+			if ( monster != null )
+				monster.GetComponent<MonsterController>().IsDead = true;
+        }
 
 		if ( Input.GetKeyDown( KeyCode.F12 ) )
 		{
@@ -294,6 +306,7 @@ public class GameManager : MonoBehaviour {
 			Debug.Log("Human " + playerName + " wins !" );
 			canvasVictoryText.text = "Human " + playerName + " wins !";
         }
+		isGameRunning = false;
 	}
 
 	// Change les sprites des items dans l'inventaire

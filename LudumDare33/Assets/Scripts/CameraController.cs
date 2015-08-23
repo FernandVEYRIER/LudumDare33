@@ -4,7 +4,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
 	public 		int start;
-	public 		int end;
+	public 		float end;
 	public		float speed;
 	public GameObject smoke;
 	/*private		float shake_decay = .005f;
