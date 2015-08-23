@@ -26,6 +26,7 @@ public abstract class BasicController : MonoBehaviour {
 	private int animAttack;
 
 	private float attackCurrentDelay;
+	private int currentKeyBind;
 	
 	protected virtual void Awake () 
 	{
@@ -58,6 +59,7 @@ public abstract class BasicController : MonoBehaviour {
 			{
 				keyBinds.Add( str, str );
 			}
+			currentKeyBind = 1;
 		}
 		else if ( characterID == 2 )
 		{
@@ -67,6 +69,7 @@ public abstract class BasicController : MonoBehaviour {
 			{
 				keyBinds.Add( str, str + "Alt" );
 			}
+			currentKeyBind = 2;
 		}
 	}
 
@@ -92,8 +95,8 @@ public abstract class BasicController : MonoBehaviour {
 		{
 			animator.SetBool( animIsGrounded, false );
 		}
-
-		if ( jump.GetComponent<Jump>().Landed )
+		// Si le controller est un monstre, on fait le shake de caméra quand il retombe
+		if ( jump.GetComponent<Jump>().Landed && GetType() == typeof(MonsterController) )
 		{
 			Camera.main.transform.parent.GetComponent<CameraController>().PlayShakeAnim();
         }
@@ -126,6 +129,9 @@ public abstract class BasicController : MonoBehaviour {
 		{
 			Attack();
 		}
+
+		if ( Input.GetKeyDown( KeyCode.F12 ) )
+		    SetKeyBinds( currentKeyBind == 1 ? 2 : 1 );
 	}
 
 	IEnumerator timer_jump() {

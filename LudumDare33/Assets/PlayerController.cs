@@ -18,7 +18,7 @@ public class PlayerController : BasicController {
 		wallJump = this.transform.GetChild (1).gameObject;
 	}
 	
-	protected override void FixedUpdate () 
+	/*protected override void FixedUpdate () 
 	{
 		base.FixedUpdate();
 		if (Input.GetAxis (keyBinds["Jump"]) != 0 && !timerJumpWall && !timerJump && wallJump.GetComponent<WallJump>().getWallJump())
@@ -39,9 +39,9 @@ public class PlayerController : BasicController {
 		timerJumpWall = true;
 		yield return new WaitForSeconds (0.07f);
 		timerJumpWall = false;
-	}
+	}*/
 	
-	protected override void Attack()
+	/*protected override void Attack()
 	{
 		base.Attack();
 		if ( wallJump.GetComponent<WallJump>().CollidedObj == null )
@@ -50,5 +50,5 @@ public class PlayerController : BasicController {
 		{
 			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().DisplayVictory( this, playerID );
 		}
-	}
+	}*/
 }
