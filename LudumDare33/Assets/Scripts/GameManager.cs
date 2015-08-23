@@ -5,12 +5,18 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+	// TODO : Destruction des particules smoke
+	//		  Curseur P1 cassé
+
 	private GameObject player;
 	private GameObject monster;
 
 	[Header("Canvas")]
 	public GameObject canvasPause;
 	public GameObject canvasPauseButton;
+	public GameObject canvasVictory;
+	public Text canvasVictoryText;
+	public GameObject canvasVictoryButton;
 	public Slider canvasPauseSound;
 	[Header("Player")]
 	public Text countdownText;
@@ -49,6 +55,7 @@ public class GameManager : MonoBehaviour {
 
 		canvasPauseSound.value = PlayerPrefs.GetFloat( "MasterVolume", 1 );
 		canvasPause.SetActive( false );
+		//canvasVictory.SetActive( false );
 
 		Time.timeScale = 0;
 		currentElapsedTime = Time.realtimeSinceStartup + resumeDelay;
@@ -238,16 +245,20 @@ public class GameManager : MonoBehaviour {
 
 	public void DisplayVictory( Object winner, int playerID )
 	{
+		canvasVictory.SetActive( true );
+		es.SetSelectedGameObject( canvasVictoryButton );
 		string playerName = PlayerPrefs.GetString( "Player" + playerID, "Player " + playerID );
 		if ( playerName == "" )
 			playerName = "Player " + playerID;
 		if ( winner.GetType() == typeof(MonsterController) )
 		{
 			Debug.Log("Monster " + playerName + " wins !" );
+			canvasVictoryText.text = "Monster " + playerName + " wins !";
 		}
 		else
 		{
 			Debug.Log("Human " + playerName + " wins !" );
+			canvasVictoryText.text = "Human " + playerName + " wins !";
         }
 	}
 
