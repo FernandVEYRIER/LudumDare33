@@ -27,7 +27,7 @@ public class MonsterController : BasicController {
 		if (Input.GetAxis (keyBinds["Jump"]) != 0 && !timerJumpWall && !timerJump && wallJump.GetComponent<WallJump>().getWallJump()) {
 			StartCoroutine("timer_jump_wall");
 			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(200 * this.transform.localScale.x, 500));
+			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(200 * this.transform.localScale.x, 375));
 			WallJump = true;
 		}
 		if (jump.GetComponent<Jump>().getCanJump()) {
@@ -36,7 +36,7 @@ public class MonsterController : BasicController {
 		if (Input.GetKeyDown (KeyCode.Z) && !dash) {
 			StartCoroutine("timer_dash");
 			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 600));
+			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 550));
 		}
 		explosion.GetComponent<CircleCollider2D> ().enabled = dash;
 	}

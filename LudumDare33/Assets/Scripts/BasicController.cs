@@ -78,11 +78,12 @@ public abstract class BasicController : MonoBehaviour {
 		}
 	}
 
-	void Update()
+	protected virtual void Update()
 	{
 		if ( attackCurrentDelay > 0 )
 			attackCurrentDelay -= Time.deltaTime;
-		
+
+		Debug.Log (GetType());
 		if ( Input.GetKeyDown( KeyCode.F12 ) )
 			SetKeyBinds( currentKeyBind == 1 ? 2 : 1 );
 	}
@@ -110,6 +111,7 @@ public abstract class BasicController : MonoBehaviour {
 
 		if (jump.GetComponent<Jump>().getCanJump() && Input.GetAxis (keyBinds["Jump"]) != 0 && !timerJump) {
 		    StartCoroutine("timer_jump");
+			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jump_strenght));
 		}
 		if (jump.GetComponent<Jump> ().getCanJump ()) {
@@ -117,7 +119,7 @@ public abstract class BasicController : MonoBehaviour {
 		}
 		if (Input.GetAxis (keyBinds["Horizontal"]) != 0 && !jump.GetComponent<Jump> ().getCanJump () && !WallJump) {
 
-			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis (keyBinds["Horizontal"]) * 0.5f,0));	
+			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis (keyBinds["Horizontal"]) * 0.8f,0));	
 		}
 		if (Input.GetAxis (keyBinds["Horizontal"]) != 0 && jump.GetComponent<Jump> ().getCanJump ()) {
 			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis (keyBinds["Horizontal"]),0));
