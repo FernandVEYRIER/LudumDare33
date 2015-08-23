@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour {
 	public Text countdownP2;
 	public Text nameP1;
 	public Text nameP2;
+	public Image [] inventorySpriteP1;
+	public Image [] inventorySpriteP2;
 	[Header("")]
 	public EventSystem es;
 	
@@ -125,6 +127,19 @@ public class GameManager : MonoBehaviour {
 		else
 		{
 			Debug.Log("Human " + playerName + " wins !" );
+        }
+	}
+
+	// Change les sprites des items dans l'inventaire
+	public void AddItem( Sprite _sprite, int index, int player )
+	{
+		if ( player == 1 )
+		{
+			inventorySpriteP1[index].sprite = _sprite;
+		}
+		else if ( player == 2 )
+		{
+			inventorySpriteP1[index].sprite = _sprite;
         }
 	}
 }
