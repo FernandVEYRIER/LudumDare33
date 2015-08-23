@@ -38,13 +38,25 @@ public class PlayerController : BasicController {
 		if (col.collider.tag == "item" && inventory.Count < 4) {
 
 			int i = 0;
+			GameObject obj = null;
+			int index;
 			foreach (var item in inventory) {
 				if (item == null) {
-					inventory.Insert(i, col.collider.gameObject.GetComponent<Item>().prefabs);
-					return;
+					obj = col.collider.gameObject.GetComponent<Item>().prefabs;
+					break;
 				}
+				i++;
 			}
-			inventory.Add(col.collider.gameObject.GetComponent<Item>().prefabs);
+			if (obj != null) {
+				index = i;
+				inventory.Insert(i, obj);
+			} else {
+
+				obj = col.collider.gameObject.GetComponent<Item>().prefabs;
+				inventory.Add(obj);
+				index = inventory.IndexOf(obj);
+			}
+			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(col.collider.gameObject.GetComponent<Item>().sprite, index, playerID);
 			print (inventory[0]);
 			Destroy(col.collider.gameObject);
 		}
