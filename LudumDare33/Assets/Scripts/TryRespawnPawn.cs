@@ -11,6 +11,7 @@ public class TryRespawnPawn : MonoBehaviour {
 	private Vector3 lastValidPlateform;
 	private float timeUntilSpawn;
 	private GameObject gm;
+	private int playerID;
 
 	void Start()
 	{
@@ -29,7 +30,7 @@ public class TryRespawnPawn : MonoBehaviour {
 		if ( hasToRespawnPlayer != 0 )
 		{
 			timeUntilSpawn -= Time.deltaTime;
-			gm.GetComponent<GameManager>().SetRespawnTimeText( hasToRespawnPlayer, Mathf.CeilToInt(timeUntilSpawn) );
+			gm.GetComponent<GameManager>().SetRespawnTimeText( playerID, Mathf.CeilToInt(timeUntilSpawn) );
 
 			if ( timeUntilSpawn <= 0 )
 			{
@@ -51,6 +52,17 @@ public class TryRespawnPawn : MonoBehaviour {
 		else
 		{
 			timeUntilSpawn = respawnDelay;
+		}
+	}
+
+	public int PlayerID
+	{
+		set
+		{
+			if ( value != 1 && value != 2 )
+				playerID = 0;
+			else
+				playerID = value;
 		}
 	}
 

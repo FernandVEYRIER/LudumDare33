@@ -51,6 +51,7 @@ public class CameraController : MonoBehaviour {
 			Instantiate( smoke, col.gameObject.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity );
 			Destroy( col.gameObject );
 			this.transform.GetChild(1).gameObject.GetComponent<TryRespawnPawn>().HasToRespawnPlayer = 2;
+			this.transform.GetChild(1).gameObject.GetComponent<TryRespawnPawn>().PlayerID = col.gameObject.GetComponent<MonsterController>().playerID;
 		}
 		else if ( col.gameObject.tag == "Player" )
 		{
@@ -59,6 +60,7 @@ public class CameraController : MonoBehaviour {
 			Destroy(_smoke, 1f);
 			Destroy( col.gameObject );
 			this.transform.GetChild(2).gameObject.GetComponentInChildren<TryRespawnPawn>().HasToRespawnPlayer = 1;
+			this.transform.GetChild(2).gameObject.GetComponentInChildren<TryRespawnPawn>().PlayerID = col.gameObject.GetComponent<PlayerController>().playerID;
 		}
 	}
 }

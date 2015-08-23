@@ -45,17 +45,19 @@ public class MapGenerator : MonoBehaviour {
 		}
 		Instantiate(backgound[0]);
 		Vector3 final_background = Vector3.zero;
+		GameObject last = null;
 		float templates_pos_y = this.transform.position.y - base_template.GetComponent<SpriteRenderer> ().bounds.size.y/2;
 		for (int i = 0; i < templates_id.Count; i++) {
 			GameObject obj = templates[templates_id[i]];
 			Vector3 position = this.transform.position + new Vector3(0, base_template.GetComponent<SpriteRenderer> ().bounds.size.y * i , 0);
 			Instantiate(obj, position, Quaternion.identity);
-			Instantiate(base_template, position - new Vector3(0, base_template.GetComponent<SpriteRenderer> ().bounds.size.y/2, 0), Quaternion.identity);
+			last = (GameObject) Instantiate(base_template, position - new Vector3(0, base_template.GetComponent<SpriteRenderer> ().bounds.size.y/2, 0), Quaternion.identity);
 			if (i != 0 && i % 2 == 0) {
 				final_background = this.transform.position + new Vector3(0, backgound[1].GetComponent<SpriteRenderer> ().bounds.size.y * (i / 2), 0);
 				Instantiate(backgound[1], final_background, Quaternion.identity);
 			}
 		}
 		Instantiate(backgound[2], final_background + new Vector3(0, backgound[2].GetComponent<SpriteRenderer> ().bounds.size.y), Quaternion.identity);
+		Instantiate(end, last.transform.position + new Vector3(0, base_template.GetComponent<SpriteRenderer> ().bounds.size.y , 0), Quaternion.identity);
 	}
 }

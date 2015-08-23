@@ -717,7 +717,7 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
+  BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 69f1ec59c703f2245b131a64747ce301, type: 3}
+  m_Sprite: {fileID: 21300000, guid: caaa279a838c6b1499ba866491239a77, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1785,7 +1785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 69f1ec59c703f2245b131a64747ce301, type: 3}
+  m_Sprite: {fileID: 21300000, guid: caaa279a838c6b1499ba866491239a77, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1827,7 +1827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 69f1ec59c703f2245b131a64747ce301, type: 3}
+  m_Sprite: {fileID: 21300000, guid: caaa279a838c6b1499ba866491239a77, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

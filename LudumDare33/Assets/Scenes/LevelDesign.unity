@@ -224,6 +224,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11487356, guid: 82441345450609442b9bd2ae8e24b39b, type: 2}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82441345450609442b9bd2ae8e24b39b, type: 2}
   m_IsPrefabParent: 0
@@ -449,10 +453,6 @@ Prefab:
     - target: {fileID: 22494886, guid: d64a7cf073b61344b8ea8440a863f574, type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8219456, guid: d64a7cf073b61344b8ea8440a863f574, type: 2}
-      propertyPath: BypassEffects
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d64a7cf073b61344b8ea8440a863f574, type: 2}
