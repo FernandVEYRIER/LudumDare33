@@ -76,7 +76,6 @@ public class MonsterController : BasicController {
 		{
 			if ( rc.transform.gameObject.tag == "Player" )
 			{
-				Debug.Log("KILLED PLAYER");
 				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().DisplayVictory( this, playerID );
 				rc.transform.gameObject.GetComponent<PlayerController>().Die();
 			}
