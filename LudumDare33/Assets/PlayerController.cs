@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerController : BasicController {
-	
-	private GameObject wallJump;
-	private bool timerJumpWall = false;
+
 	private List<GameObject> inventory = new List<GameObject>();
 	// Use this for initialization
 	
@@ -17,9 +15,7 @@ public class PlayerController : BasicController {
 	
 	void Start () 
 	{
-		wallJump = this.transform.GetChild (1).gameObject;
 	}
-	
 
 	void Update() {
 
