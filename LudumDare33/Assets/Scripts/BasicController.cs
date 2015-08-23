@@ -25,10 +25,13 @@ public abstract class BasicController : MonoBehaviour {
 	private int animHorizontalVel;
 	private int animIsGrounded;
 	private int animAttack;
+	private int animDeath;
 
 	private float attackCurrentDelay;
-	private int currentKeyBind;
-	
+	private bool isDead;
+
+	protected bool doubleJumped;
+
 	protected virtual void Awake () 
 	{
 		jump = this.transform.GetChild (0).gameObject;
@@ -38,6 +41,7 @@ public abstract class BasicController : MonoBehaviour {
 		animHorizontalVel = Animator.StringToHash( "HorizontalVel" );
 		animIsGrounded = Animator.StringToHash( "isGrounded" );
 		animAttack = Animator.StringToHash( "Attack" );
+		animDeath = Animator.StringToHash( "Die" );
 
 		attackCurrentDelay = 0;
 
@@ -48,6 +52,7 @@ public abstract class BasicController : MonoBehaviour {
 		imputName.Add("item_1");
 		imputName.Add("item_2");
 		imputName.Add("item_3");
+		imputName.Add("Dash");
 		// Les binds sont gérés par le game manager
 
 		// Player ID est initialisé dans les classes enfant
@@ -58,23 +63,19 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		if ( characterID == 1 )
 		{
-			//Debug.Log("P1 settings");
 			keyBinds = new Dictionary<string, string>();
 			foreach ( string str in imputName )
 			{
 				keyBinds.Add( str, str );
 			}
-			currentKeyBind = 1;
 		}
 		else if ( characterID == 2 )
 		{
-			//Debug.Log("P2 settings");
 			keyBinds = new Dictionary<string, string>();
 			foreach ( string str in imputName )
 			{
 				keyBinds.Add( str, str + "Alt" );
 			}
-			currentKeyBind = 2;
 		}
 	}
 
@@ -86,6 +87,9 @@ public abstract class BasicController : MonoBehaviour {
 	
 	protected virtual void FixedUpdate () {
 
+		if ( isDead )
+			return;
+
 		#region Cette région s'occupe de la gestion des animations
 		if ( jump.GetComponent<Jump>().getCanJump() )
 		{
@@ -96,9 +100,10 @@ public abstract class BasicController : MonoBehaviour {
 			animator.SetBool( animIsGrounded, false );
 		}
 		// Si le controller est un monstre, on fait le shake de caméra quand il retombe
-		if ( jump.GetComponent<Jump>().Landed && GetType() == typeof(MonsterController) )
+		if ( jump.GetComponent<Jump>().Landed && GetType() == typeof(MonsterController) && doubleJumped )
 		{
 			Camera.main.transform.parent.GetComponent<CameraController>().PlayShakeAnim();
+			doubleJumped = false;
         }
 
 		animator.SetFloat( animHorizontalVel, Input.GetAxis (keyBinds[("Horizontal")] ) );
@@ -143,6 +148,12 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		attackCurrentDelay = attackDelay;
 		animator.SetTrigger( animAttack );
+	}
+
+	public void Die()
+	{
+		animator.SetTrigger( animDeath );
+		isDead = true;
 	}
 
 	public int playerID

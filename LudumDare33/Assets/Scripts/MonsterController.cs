@@ -28,14 +28,16 @@ public class MonsterController : BasicController {
 			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(200 * this.transform.localScale.x, 375));
 			WallJump = true;
+			doubleJumped = true;
 		}
 		if (jump.GetComponent<Jump>().getCanJump()) {
 			WallJump = false;
 		}
-		if (Input.GetKeyDown (KeyCode.Z) && !dash) {
+		if (Input.GetAxis (keyBinds["Dash"]) != 0 && !dash) {
 			StartCoroutine("timer_dash");
 			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 550));
+			doubleJumped = true;
 		}
 		explosion.GetComponent<CircleCollider2D> ().enabled = dash;
 	}
@@ -59,6 +61,7 @@ public class MonsterController : BasicController {
 	public bool getDash() {
 		return dash;
 	}
+
 	protected override void Attack()
 	{
 		base.Attack();
@@ -68,6 +71,7 @@ public class MonsterController : BasicController {
 		if ( wallJump.GetComponent<WallJump>().CollidedObj.tag == "Player" )
 		{
 			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().DisplayVictory( this, playerID );
+			wallJump.GetComponent<WallJump>().CollidedObj.GetComponent<PlayerController>().Die();
 		}
 	}
 }

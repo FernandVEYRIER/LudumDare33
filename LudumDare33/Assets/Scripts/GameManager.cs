@@ -93,56 +93,58 @@ public class GameManager : MonoBehaviour {
 
 	void Update ()
 	{
-		Vector3 target = Vector3.zero;
+		Vector3 targetCursor1 = player1CursorInstance.transform.position;
+		Vector3 targetCursor2 = player2CursorInstance.transform.position;
 
 		// Si on n'a pas de joueur, on le cherche
 		if ( player == null )
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
 		}
-		else
-		{
+		//else
+		//{
 			// Si la cible du curseur est le héros
 			if ( cursorP1TargetID == 1 && player != null )
-				target = player.transform.position + new Vector3(0, .45f, 0);
+				targetCursor1 = player.transform.position + new Vector3(0, .45f, 0);
 			else if ( cursorP1TargetID == 2 && monster != null )
-				target = monster.transform.position + new Vector3(0, 0.8f, 0);
+				targetCursor1 = monster.transform.position + new Vector3(0, 0.8f, 0);
 
 			// Si on ne change pas de curseur, il suit sa cible
 			if ( !isSwitchingCursor )
-				player1CursorInstance.transform.position = target;
+				player1CursorInstance.transform.position = targetCursor1;
 			// Sinon il va vers l'autre joueur
 			else
 			{
 				player1CursorInstance.transform.position = Vector3.SmoothDamp( player1CursorInstance.transform.position,
-				                                                              target, ref currentVelCursorP1, 0.12f );
+				                                                              targetCursor1, ref currentVelCursorP1, 0.12f );
 				// Si la distance vers la cible est très petite (ctb) on stoppe le switch
-				if ( Mathf.Abs ( Vector3.Distance( player1CursorInstance.transform.position, target ) ) < 0.1f )
+				if ( Mathf.Abs ( Vector3.Distance( player1CursorInstance.transform.position, targetCursor1 ) ) < 0.1f )
 				{
 					isSwitchingCursor = false;
 				}
 			}
-		}
+		//}
 
 		if ( monster == null )
 		{
 			monster = GameObject.FindGameObjectWithTag("Monster");
 		}
-		else
-		{
+		//else
+		//{
 			if ( cursorP2TargetID == 1 && player != null )
-				target = player.transform.position + new Vector3(0, .45f, 0);
+				targetCursor2 = player.transform.position + new Vector3(0, .45f, 0);
 			else if ( cursorP2TargetID == 2 && monster != null )
-				target = monster.transform.position + new Vector3(0, 0.8f, 0);
+				targetCursor2 = monster.transform.position + new Vector3(0, 0.8f, 0);
+			//Debug.Log(target);
 
             if ( !isSwitchingCursor )
-				player2CursorInstance.transform.position = target;
+				player2CursorInstance.transform.position = targetCursor2;
 			else
 			{
 				player2CursorInstance.transform.position = Vector3.SmoothDamp( player2CursorInstance.transform.position,
-				                                                              target, ref currentVelCursorP2, 0.12f );
+				                                                              targetCursor2, ref currentVelCursorP2, 0.12f );
 			}
-        }
+        //}
 
 		if ( Input.GetKeyDown( KeyCode.F12 ) )
 		{
@@ -178,6 +180,22 @@ public class GameManager : MonoBehaviour {
 	public void SwitchPlayers()
 	{
 		Sprite _sprite;
+
+		// On change l'Id
+		/*if ( player != null )
+		{
+			if ( player.GetComponent<PlayerController>().playerID = 1 )
+				player.GetComponent<PlayerController>().playerID = 2;
+			else
+				player.GetComponent<PlayerController>().playerID = 1;
+		}
+		if ( monster != null )
+		{
+			if ( player.GetComponent<MonsterController>().playerID = 1 )
+				player.GetComponent<MonsterController>().playerID = 2;
+			else
+				player.GetComponent<MonsterController>().playerID = 1;
+		}*/
 
 		// On change les binds
 		currentBindP1 = (currentBindP1 == 1) ? 2 : 1;
@@ -232,13 +250,23 @@ public class GameManager : MonoBehaviour {
 		else
 			timeValue = value.ToString();
 
+		// Cette partie est tordue mais j'ai trop mal à la tete pour réfléchir
+		// Par défautl p1 est l'humain et p2 le monstre
+		// Si P1 n'a pas le bind P1 alors c'est qu'il est le monstre coté gauche
 		if ( player == 1 )
 		{
-			countdownP1.text = timeValue;
+			if ( currentBindP1 == 1 )
+				countdownP1.text = timeValue;
+			else
+				countdownP2.text = timeValue;
 		}
+		// Et inversement pour le monstre
 		else if ( player == 2 )
 		{
-			countdownP2.text = timeValue;
+			if ( currentBindP2 == 1 )
+				countdownP1.text = timeValue;
+			else
+				countdownP2.text = timeValue;
 		}
 	}
 
