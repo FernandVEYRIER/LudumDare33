@@ -12,14 +12,12 @@ public class Inventory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
-		if (Input.GetAxis(ke))
 	}
 
 	void OnCollisionEnter2D(Collision2D col) {
 
 		if (col.collider.tag == "item") {
-			inventory.Add(col.collider);
+			inventory.Add(col.collider.gameObject);
 		}
 	}
 }

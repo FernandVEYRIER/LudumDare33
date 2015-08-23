@@ -62,9 +62,10 @@ public class MonsterController : BasicController {
 		base.Attack();
 		if ( wallJump.GetComponent<WallJump>().CollidedObj == null )
 			return;
+		Debug.Log (wallJump.GetComponent<WallJump>().CollidedObj);
 		if ( wallJump.GetComponent<WallJump>().CollidedObj.tag == "Player" )
 		{
-			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().DisplayVictory( this, 1 );
+			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().DisplayVictory( this, playerID );
 		}
 	}
 }
