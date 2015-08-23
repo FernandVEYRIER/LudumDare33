@@ -4,8 +4,9 @@ using System.Collections;
 public class MonsterController : BasicController {
 
 	private GameObject wallJump;
-	private GameObject head;
+	private GameObject explosion;
 	private bool timerJumpWall = false;
+	private bool dash = false;
 	// Use this for initialization
 
 	protected override void Awake()
@@ -16,7 +17,7 @@ public class MonsterController : BasicController {
 
 	void Start () {
 		wallJump = this.transform.GetChild (1).gameObject;
-		head = this.transform.GetChild (2).gameObject;
+		explosion = this.transform.GetChild (3).gameObject;
 	}
 	
 	// Update is called once per frame
@@ -32,6 +33,12 @@ public class MonsterController : BasicController {
 		if (jump.GetComponent<Jump>().getCanJump()) {
 			WallJump = false;
 		}
+		if (Input.GetKeyDown (KeyCode.Z) && !dash) {
+			StartCoroutine("timer_dash");
+			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 600));
+		}
+		explosion.GetComponent<CircleCollider2D> ().enabled = dash;
 	}
 
 	IEnumerator timer_jump_wall() {
@@ -40,6 +47,16 @@ public class MonsterController : BasicController {
 		timerJumpWall = false;
 	}
 
+	IEnumerator timer_dash() {
+		dash = true;
+		gameObject.layer = 10;
+		yield return new WaitForSeconds (2f);
+		gameObject.layer = 9;
+		dash = false;
+	}
+	public bool getDash() {
+		return dash;
+	}
 	protected override void Attack()
 	{
 		base.Attack();
