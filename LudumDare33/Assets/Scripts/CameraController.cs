@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour {
 	public 		int start;
 	public 		int end;
 	public		float speed;
+	public GameObject smoke;
 	/*private		float shake_decay = .005f;
 	private		float shake_intensity;*/
 
@@ -47,11 +48,13 @@ public class CameraController : MonoBehaviour {
 	{
 		if ( col.gameObject.tag == "Monster" )
 		{
+			Instantiate( smoke, col.gameObject.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity );
 			Destroy( col.gameObject );
 			this.transform.GetChild(1).gameObject.GetComponent<TryRespawnPawn>().HasToRespawnPlayer = 2;
 		}
 		else if ( col.gameObject.tag == "Player" )
 		{
+			Instantiate( smoke, col.gameObject.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity );
 			Destroy( col.gameObject );
 			this.transform.GetChild(2).gameObject.GetComponentInChildren<TryRespawnPawn>().HasToRespawnPlayer = 1;
 		}
