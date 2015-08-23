@@ -23,12 +23,15 @@ public class PlayerController : BasicController {
 			if (Input.GetAxis (keyBinds ["item_1"]) != 0 && inventory[0] != null) {
 				Instantiate(inventory[0], this.transform.position, Quaternion.identity);
 				inventory[0] = null;
+				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(null, 0, playerID);
 			} else if (Input.GetAxis (keyBinds ["item_2"]) != 0 && inventory[1] != null) {
 				Instantiate(inventory[1], this.transform.position, Quaternion.identity);
 				inventory[1] = null;
+				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(null, 1, playerID);
 			} else if (Input.GetAxis (keyBinds ["item_3"]) != 0 && inventory[2] != null) {
 				Instantiate(inventory[2], this.transform.position, Quaternion.identity);
 				inventory[2] = null;
+				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(null, 2, playerID);
 			}
 		}
 	}
@@ -57,8 +60,8 @@ public class PlayerController : BasicController {
 				index = inventory.IndexOf(obj);
 			}
 			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(col.collider.gameObject.GetComponent<Item>().sprite, index, playerID);
-			print (inventory[0]);
 			Destroy(col.collider.gameObject);
+
 		}
 	}
 }

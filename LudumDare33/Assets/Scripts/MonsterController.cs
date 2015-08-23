@@ -7,6 +7,7 @@ public class MonsterController : BasicController {
 	private GameObject explosion;
 	private bool timerJumpWall = false;
 	private bool dash = false;
+	private bool can_dash = false;
 	// Use this for initialization
 
 	protected override void Awake()
@@ -33,13 +34,17 @@ public class MonsterController : BasicController {
 		if (jump.GetComponent<Jump>().getCanJump()) {
 			WallJump = false;
 		}
-		if (Input.GetAxis (keyBinds["Dash"]) != 0 && !dash) {
+		if (Input.GetAxis (keyBinds["Dash"]) != 0 && !can_dash) {
 			StartCoroutine("timer_dash");
 			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 550));
 			doubleJumped = true;
 		}
 		explosion.GetComponent<CircleCollider2D> ().enabled = dash;
+		if (dash && this.gameObject.GetComponent<Rigidbody2D> ().velocity.y < 0) {
+			dash = false;
+			this.gameObject.layer = 9;
+		}
 	}
 
 	IEnumerator timer_jump_wall() {
@@ -49,14 +54,14 @@ public class MonsterController : BasicController {
 	}
 
 	IEnumerator timer_dash() {
+
 		dash = true;
-		print (gameObject);
+		can_dash = true;
 		this.gameObject.layer = 10;
-		print (gameObject.layer);
 		yield return new WaitForSeconds (2f);
 		this.gameObject.layer = 9;
-		print (gameObject.layer);
 		dash = false;
+		can_dash = false;
 	}
 	public bool getDash() {
 		return dash;
