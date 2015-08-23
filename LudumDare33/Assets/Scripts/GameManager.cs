@@ -34,6 +34,11 @@ public class GameManager : MonoBehaviour {
 
 	private GameObject player1CursorInstance;
 	private GameObject player2CursorInstance;
+	private bool isSwitchingCursor;
+	private Vector3 currentVelCursorP1;
+	private Vector3 currentVelCursorP2;
+	private int cursorP1TargetID;
+	private int cursorP2TargetID;
 
 	void Start () 
 	{
@@ -61,6 +66,9 @@ public class GameManager : MonoBehaviour {
 
 		player1CursorInstance = (GameObject) Instantiate( player1Cursor, player.transform.position, Quaternion.identity );
 		player2CursorInstance = (GameObject) Instantiate( player2Cursor, monster.transform.position, Quaternion.identity );
+
+		cursorP1TargetID = 1;
+		cursorP2TargetID = 2;
 	}
 
 	public void SpawnPlayer( Object player, Vector3 position, int playerType )
@@ -76,13 +84,35 @@ public class GameManager : MonoBehaviour {
 
 	void Update ()
 	{
+		Vector3 target = Vector3.zero;
+
+		// Si on n'a pas de joueur, on le cherche
 		if ( player == null )
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
 		}
 		else
 		{
-			player1CursorInstance.transform.position = player.transform.position + new Vector3(0, .45f, 0);
+			// Si la cible du curseur est le héros
+			if ( cursorP1TargetID == 1 && player != null )
+				target = player.transform.position + new Vector3(0, .45f, 0);
+			else if ( cursorP1TargetID == 2 && monster != null )
+				target = monster.transform.position + new Vector3(0, 0.8f, 0);
+
+			// Si on ne change pas de curseur, il suit sa cible
+			if ( !isSwitchingCursor )
+				player1CursorInstance.transform.position = target;
+			// Sinon il va vers l'autre joueur
+			else
+			{
+				player1CursorInstance.transform.position = Vector3.SmoothDamp( player1CursorInstance.transform.position,
+				                                                              target, ref currentVelCursorP1, 0.12f );
+				// Si la distance vers la cible est très petite (ctb) on stoppe le switch
+				if ( Mathf.Abs ( Vector3.Distance( player1CursorInstance.transform.position, target ) ) < 0.1f )
+				{
+					isSwitchingCursor = false;
+				}
+			}
 		}
 
 		if ( monster == null )
@@ -91,8 +121,19 @@ public class GameManager : MonoBehaviour {
 		}
 		else
 		{
-			player2CursorInstance.transform.position = monster.transform.position + new Vector3(0, 0.8f, 0);
-		}
+			if ( cursorP2TargetID == 1 && player != null )
+				target = player.transform.position + new Vector3(0, .45f, 0);
+			else if ( cursorP2TargetID == 2 && monster != null )
+				target = monster.transform.position + new Vector3(0, 0.8f, 0);
+
+            if ( !isSwitchingCursor )
+				player2CursorInstance.transform.position = target;
+			else
+			{
+				player2CursorInstance.transform.position = Vector3.SmoothDamp( player2CursorInstance.transform.position,
+				                                                              target, ref currentVelCursorP2, 0.12f );
+			}
+        }
 
 		if ( Input.GetKeyDown( KeyCode.F12 ) )
 		{
@@ -102,6 +143,9 @@ public class GameManager : MonoBehaviour {
 				player.GetComponent<PlayerController>().SetKeyBinds( currentBindP1 );
 			if ( monster != null )
 				monster.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
+			cursorP1TargetID = (cursorP1TargetID == 1) ? 2 : 1;
+			cursorP2TargetID = (cursorP2TargetID == 1) ? 2 : 1;
+            isSwitchingCursor = true;
 		}
 
 		if ( Input.GetKeyDown( KeyCode.Joystick1Button9 ) || Input.GetKeyDown( KeyCode.Escape ) )
