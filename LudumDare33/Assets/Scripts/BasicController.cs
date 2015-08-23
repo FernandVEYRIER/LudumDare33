@@ -43,6 +43,9 @@ public abstract class BasicController : MonoBehaviour {
 		imputName.Add( "Fire1" );
 		imputName.Add( "Jump" );
 		imputName.Add( "Horizontal" );
+		imputName.Add("item_1");
+		imputName.Add("item_2");
+		imputName.Add("item_3");
 		// Player ID est initialisé dans les classes enfant
 		if ( _playerID != 0 )
 			SetKeyBinds( _playerID );
@@ -122,7 +125,7 @@ public abstract class BasicController : MonoBehaviour {
 			this.transform.localScale = new Vector2(-1, 1);
 		}
 
-		if ( Input.GetAxis( keyBinds["Fire1"] ) == 1 && attackCurrentDelay <= 0 )
+		if ( Input.GetAxis( keyBinds["Fire1"] ) == 1 && attackCurrentDelay <= 0)
 		{
 			Attack();
 		}
