@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour {
 	public Text nameP2;
 	public Image [] inventorySpriteP1;
 	public Image [] inventorySpriteP2;
+	public GameObject player1Cursor;
+	public GameObject player2Cursor;
 	[Header("")]
 	public EventSystem es;
 	
@@ -29,6 +31,9 @@ public class GameManager : MonoBehaviour {
 
 	private int currentBindP1;
 	private int currentBindP2;
+
+	private GameObject player1CursorInstance;
+	private GameObject player2CursorInstance;
 
 	void Start () 
 	{
@@ -53,6 +58,9 @@ public class GameManager : MonoBehaviour {
 		monster = GameObject.FindGameObjectWithTag("Monster");
 		player.GetComponent<PlayerController>().SetKeyBinds( currentBindP1 );
 		monster.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
+
+		player1CursorInstance = (GameObject) Instantiate( player1Cursor, player.transform.position, Quaternion.identity );
+		player2CursorInstance = (GameObject) Instantiate( player2Cursor, monster.transform.position, Quaternion.identity );
 	}
 
 	public void SpawnPlayer( Object player, Vector3 position, int playerType )
@@ -72,9 +80,18 @@ public class GameManager : MonoBehaviour {
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
 		}
+		else
+		{
+			player1CursorInstance.transform.position = player.transform.position + new Vector3(0, .45f, 0);
+		}
+
 		if ( monster == null )
 		{
 			monster = GameObject.FindGameObjectWithTag("Monster");
+		}
+		else
+		{
+			player2CursorInstance.transform.position = monster.transform.position + new Vector3(0, 0.8f, 0);
 		}
 
 		if ( Input.GetKeyDown( KeyCode.F12 ) )
