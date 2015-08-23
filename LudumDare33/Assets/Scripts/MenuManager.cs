@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour {
 	public GameObject [] buttons;
 	[Header("Pannels")]
 	public GameObject settingsPannel;
+	public GameObject creditsPannel;
 	public InputField [] playerName;
 	public Slider soundVolume;
 
@@ -21,6 +22,7 @@ public class MenuManager : MonoBehaviour {
 		currentButtonSelected = 0;
 		ChangeSelectedButton( currentButtonSelected );
 		settingsPannel.SetActive( false );
+		creditsPannel.SetActive( false );
 
 		soundVolume.value = PlayerPrefs.GetFloat( "MasterVolume", 1 );
 		playerName[0].text = PlayerPrefs.GetString( "Player1", "Player1" );
@@ -35,6 +37,14 @@ public class MenuManager : MonoBehaviour {
 	public void LoadLevel( int level )
 	{
 		Application.LoadLevel( level );
+	}
+
+	public void DisplayCredits()
+	{
+		if ( creditsPannel.activeSelf )
+			creditsPannel.SetActive( false );
+		else
+			creditsPannel.SetActive( true );
 	}
 
 	public void DisplaySettings()

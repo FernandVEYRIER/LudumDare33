@@ -80,11 +80,9 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		if ( attackCurrentDelay > 0 )
 			attackCurrentDelay -= Time.deltaTime;
-
-		/*if ( Input.GetKeyDown( KeyCode.F12 ) )
-			SetKeyBinds(1);
-		if ( Input.GetKeyDown( KeyCode.F11 ) )
-			SetKeyBinds(2);*/
+		
+		if ( Input.GetKeyDown( KeyCode.F12 ) )
+			SetKeyBinds( currentKeyBind == 1 ? 2 : 1 );
 	}
 	
 	protected virtual void FixedUpdate () {
@@ -132,9 +130,6 @@ public abstract class BasicController : MonoBehaviour {
 		{
 			Attack();
 		}
-
-		if ( Input.GetKeyDown( KeyCode.F12 ) )
-		    SetKeyBinds( currentKeyBind == 1 ? 2 : 1 );
 	}
 
 	IEnumerator timer_jump() {
