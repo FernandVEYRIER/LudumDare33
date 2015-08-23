@@ -10,10 +10,12 @@ public class TryRespawnPawn : MonoBehaviour {
 	private int hasToRespawnPlayer;
 	private Vector3 lastValidPlateform;
 	private float timeUntilSpawn;
+	private GameObject gm;
 
 	void Start()
 	{
 		timeUntilSpawn = respawnDelay;
+		gm = GameObject.FindGameObjectWithTag( "GameManager" );
 	}
 
 	void OnTriggerEnter2D( Collider2D col )
@@ -27,6 +29,8 @@ public class TryRespawnPawn : MonoBehaviour {
 		if ( hasToRespawnPlayer != 0 )
 		{
 			timeUntilSpawn -= Time.deltaTime;
+			gm.GetComponent<GameManager>().SetRespawnTimeText( hasToRespawnPlayer, Mathf.CeilToInt(timeUntilSpawn) );
+
 			if ( timeUntilSpawn <= 0 )
 			{
 				if ( lastValidPlateform != Vector3.zero )

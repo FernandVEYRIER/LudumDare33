@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+	/*private GameObject player;
+	private GameObject monster;*/
+
 	public GameObject canvasPause;
 	public GameObject canvasPauseButton;
 	public Slider canvasPauseSound;
 	public Text countdownText;
+	public Text countdownP1;
+	public Text countdownP2;
 	public EventSystem es;
 
 
@@ -73,6 +78,20 @@ public class GameManager : MonoBehaviour {
 			canvasPause.SetActive( true );
 			es.SetSelectedGameObject( canvasPauseButton );
 			Time.timeScale = 0;
+		}
+	}
+
+	public void SetRespawnTimeText( int player, int value )
+	{
+		if ( value < 0 )
+			value = 0;
+		if ( player == 1 )
+		{
+			countdownP1.text = value.ToString();
+		}
+		else if ( player == 2 )
+		{
+			countdownP2.text = value.ToString();
 		}
 	}
 
