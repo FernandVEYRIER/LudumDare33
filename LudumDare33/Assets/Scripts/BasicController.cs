@@ -76,11 +76,12 @@ public abstract class BasicController : MonoBehaviour {
 		}
 	}
 
-	void Update()
+	protected virtual void Update()
 	{
 		if ( attackCurrentDelay > 0 )
 			attackCurrentDelay -= Time.deltaTime;
-		
+
+		Debug.Log (GetType());
 		if ( Input.GetKeyDown( KeyCode.F12 ) )
 			SetKeyBinds( currentKeyBind == 1 ? 2 : 1 );
 	}

@@ -18,7 +18,7 @@ public class PlayerController : BasicController {
 	}
 
 	void Update() {
-
+		base.Update();
 		if (GetType() == typeof (PlayerController)) {
 			if (Input.GetAxis (keyBinds ["item_1"]) != 0 && inventory[0] != null) {
 				Instantiate(inventory[0], this.transform.position, Quaternion.identity);
