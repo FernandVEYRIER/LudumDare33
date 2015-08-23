@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour {
 
 
 	private bool isResumingGame;
-	private float resumeDelay = 0;
+	private float resumeDelay = 3;
 	private float currentElapsedTime;
 
 	// Use this for initialization
