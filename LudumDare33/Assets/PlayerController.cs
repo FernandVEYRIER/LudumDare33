@@ -20,14 +20,13 @@ public class PlayerController : BasicController {
 	void Update() {
 
 		if (GetType() == typeof (PlayerController)) {
-			print(Input.GetAxis (keyBinds ["item_1"]));
-			if (Input.GetAxis (keyBinds ["item_1"]) != 0) {
+			if (Input.GetAxis (keyBinds ["item_1"]) != 0 && inventory[0] != null) {
 				Instantiate(inventory[0], this.transform.position, Quaternion.identity);
 				inventory[0] = null;
-			} else if (Input.GetAxis (keyBinds ["item_2"]) != 0) {
+			} else if (Input.GetAxis (keyBinds ["item_2"]) != 0 && inventory[1] != null) {
 				Instantiate(inventory[1], this.transform.position, Quaternion.identity);
 				inventory[1] = null;
-			} else if (Input.GetAxis (keyBinds ["item_3"]) != 0) {
+			} else if (Input.GetAxis (keyBinds ["item_3"]) != 0 && inventory[2] != null) {
 				Instantiate(inventory[2], this.transform.position, Quaternion.identity);
 				inventory[2] = null;
 			}
