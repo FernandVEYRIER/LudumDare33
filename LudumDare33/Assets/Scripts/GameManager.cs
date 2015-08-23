@@ -196,6 +196,12 @@ public class GameManager : MonoBehaviour {
 		_sprite = player1Sprite.sprite;
 		player1Sprite.sprite = player2Sprite.sprite;
 		player2Sprite.sprite = _sprite;
+		for ( int i = 0; i < 3; i++ )
+		{
+			_sprite = inventorySpriteP1[i].sprite;
+			inventorySpriteP1[i].sprite = inventorySpriteP2[i].sprite;
+			inventorySpriteP2[i].sprite = _sprite;
+		}
     }
     
     public void SetPause()
