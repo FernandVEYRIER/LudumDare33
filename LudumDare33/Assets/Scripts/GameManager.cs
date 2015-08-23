@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
 	public EventSystem es;
 	
 	private bool isResumingGame;
-	private float resumeDelay = 0;
+	private float resumeDelay = 3;
 	private float currentElapsedTime;
 
 	private int currentBindP1;
@@ -305,7 +305,12 @@ public class GameManager : MonoBehaviour {
 		}
 		else if ( player == 2 )
 		{
-			inventorySpriteP1[index].sprite = _sprite;
+			inventorySpriteP2[index].sprite = _sprite;
         }
+	}
+
+	public void RestartLevel()
+	{
+		Application.LoadLevel( Application.loadedLevel );
 	}
 }

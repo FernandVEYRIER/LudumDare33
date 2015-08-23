@@ -69,14 +69,26 @@ public class MonsterController : BasicController {
 
 	protected override void Attack()
 	{
+		RaycastHit2D [] ray = Physics2D.CircleCastAll( this.transform.position, 0.2f, Vector2.right );
 		base.Attack();
-		if ( wallJump.GetComponent<WallJump>().CollidedObj == null )
+
+		foreach ( RaycastHit2D rc in ray )
+		{
+			if ( rc.transform.gameObject.tag == "Player" )
+			{
+				Debug.Log("KILLED PLAYER");
+				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().DisplayVictory( this, playerID );
+				rc.transform.gameObject.GetComponent<PlayerController>().Die();
+			}
+		}
+
+		/*if ( wallJump.GetComponent<WallJump>().CollidedObj == null )
 			return;
 		Debug.Log (wallJump.GetComponent<WallJump>().CollidedObj);
 		if ( wallJump.GetComponent<WallJump>().CollidedObj.tag == "Player" )
 		{
 			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().DisplayVictory( this, playerID );
 			wallJump.GetComponent<WallJump>().CollidedObj.GetComponent<PlayerController>().Die();
-		}
+		}*/
 	}
 }
