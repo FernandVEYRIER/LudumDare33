@@ -50,9 +50,9 @@ public class MapGenerator : MonoBehaviour {
 			GameObject obj = templates[templates_id[i]];
 			Vector3 position = this.transform.position + new Vector3(0, base_template.GetComponent<SpriteRenderer> ().bounds.size.y * i , 0);
 			Instantiate(obj, position, Quaternion.identity);
-			Instantiate(base_template, position, Quaternion.identity);
+			Instantiate(base_template, position - new Vector3(0, base_template.GetComponent<SpriteRenderer> ().bounds.size.y/2, 0), Quaternion.identity);
 			if (i != 0 && i % 2 == 0) {
-				final_background = this.transform.position + new Vector3(0, backgound[1].GetComponent<SpriteRenderer> ().bounds.size.y * (i /2), 0);
+				final_background = this.transform.position + new Vector3(0, backgound[1].GetComponent<SpriteRenderer> ().bounds.size.y * (i / 2), 0);
 				Instantiate(backgound[1], final_background, Quaternion.identity);
 			}
 		}

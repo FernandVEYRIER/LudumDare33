@@ -48,9 +48,12 @@ public class MonsterController : BasicController {
 
 	IEnumerator timer_dash() {
 		dash = true;
-		gameObject.layer = 10;
+		print (gameObject);
+		this.gameObject.layer = 10;
+		print (gameObject.layer);
 		yield return new WaitForSeconds (2f);
-		gameObject.layer = 9;
+		this.gameObject.layer = 9;
+		print (gameObject.layer);
 		dash = false;
 	}
 	public bool getDash() {
