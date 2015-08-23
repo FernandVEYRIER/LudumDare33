@@ -7,6 +7,7 @@ public abstract class BasicController : MonoBehaviour {
 	public float jump_strenght = 0;
 	public float horizontal_strenght = 0;
 	protected float attackDelay = 0.3f;
+	private float scale;
 
 	// Contient tous les binds pour chaque joueur
 	protected Dictionary<string, string> keyBinds;
@@ -50,6 +51,7 @@ public abstract class BasicController : MonoBehaviour {
 		// Player ID est initialisé dans les classes enfant
 		if ( _playerID != 0 )
 			SetKeyBinds( _playerID );
+		scale = this.transform.localScale.x;
 	}
 
 	public void SetKeyBinds( int characterID )
@@ -121,9 +123,9 @@ public abstract class BasicController : MonoBehaviour {
 			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis (keyBinds["Horizontal"]),0));
 		}
 		if (Input.GetAxis (keyBinds["Horizontal"]) < 0) {
-			this.transform.localScale = new Vector2(1, 1);
+			this.transform.localScale = new Vector2(scale, this.transform.localScale.y);
 		} else if (Input.GetAxis (keyBinds["Horizontal"]) > 0) {
-			this.transform.localScale = new Vector2(-1, 1);
+			this.transform.localScale = new Vector2(scale * -1, this.transform.localScale.y);
 		}
 
 		if ( Input.GetAxis( keyBinds["Fire1"] ) == 1 && attackCurrentDelay <= 0)

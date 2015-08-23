@@ -1,31 +1,17 @@
-<<<<<<< HEAD
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlayerController.cs">
     <Files>
       <File FileName="Assets\Scripts\MonsterController.cs" Line="72" Column="1" />
-      <File FileName="Assets\Scripts\BasicController.cs" Line="128" Column="74" />
+      <File FileName="Assets\Scripts\BasicController.cs" Line="163" Column="1" />
       <File FileName="Assets\Scripts\Jump.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\GameManager.cs" Line="16" Column="31" />
+      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\enable_explosion.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\randomMap.cs" Line="1" Column="1" />
       <File FileName="Assets\destroy_plateform.cs" Line="1" Column="1" />
       <File FileName="Assets\Inventory.cs" Line="1" Column="1" />
-      <File FileName="Assets\PlayerController.cs" Line="78" Column="82" />
-=======
-﻿<Properties GitUserInfo="UsingGIT">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlayerController.cs">
-    <Files>
-      <File FileName="Assets\Scripts\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\MenuManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\BasicController.cs" Line="47" Column="1" />
-      <File FileName="Assets\Scripts\MonsterController.cs" Line="48" Column="1" />
-      <File FileName="Assets\PlayerController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Jump.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\randomMap.cs" Line="28" Column="1" />
-      <File FileName="Assets\Scripts\WallJump.cs" Line="1" Column="1" />
->>>>>>> d46d3a000c859865c58ba370fc0f0c1336204637
+      <File FileName="Assets\PlayerController.cs" Line="33" Column="79" />
+      <File FileName="Assets\Item.cs" Line="6" Column="27" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
