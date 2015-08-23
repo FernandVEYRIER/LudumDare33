@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	// TODO : Destruction des particules smoke
-	//		  Curseur P1 cassé
+	// TODO : swap persos
+	//		  objets
 
 	private GameObject player;
 	private GameObject monster;
@@ -307,6 +307,7 @@ public class GameManager : MonoBehaviour {
 			canvasVictoryText.text = "Human " + playerName + " wins !";
         }
 		isGameRunning = false;
+		GameObject.Find ("MainCameraHolder").GetComponent<CameraController>().speed = 0;
 	}
 
 	// Change les sprites des items dans l'inventaire

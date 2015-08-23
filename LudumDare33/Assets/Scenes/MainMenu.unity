@@ -485,6 +485,10 @@ Prefab:
       propertyPath: m_Color.b
       value: .734212756
       objectReference: {fileID: 0}
+    - target: {fileID: 8236148, guid: 7e42604c00014bd41a02736d126f2eb2, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 81796d65d7135e7489d4e468c584ee81, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7e42604c00014bd41a02736d126f2eb2, type: 2}
   m_IsPrefabParent: 0
