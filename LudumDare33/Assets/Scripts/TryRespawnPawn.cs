@@ -37,14 +37,14 @@ public class TryRespawnPawn : MonoBehaviour {
 				{
 					if ( hasToRespawnPlayer == 1 )
 					{
-						Instantiate( playerPrefab, lastValidPlateform, Quaternion.identity );
+						gm.GetComponent<GameManager>().SpawnPlayer( playerPrefab, lastValidPlateform, 1 );
 					}
 					else
 					{
-						Instantiate( monsterPrefab, lastValidPlateform, Quaternion.identity );
+						gm.GetComponent<GameManager>().SpawnPlayer( monsterPrefab, lastValidPlateform, 2 );
 					}
 					hasToRespawnPlayer = 0;
-					lastValidPlateform = Vector3.zero;
+					//lastValidPlateform = Vector3.zero;
 				}
 			}
 		}

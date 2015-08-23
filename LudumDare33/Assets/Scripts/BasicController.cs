@@ -48,9 +48,9 @@ public abstract class BasicController : MonoBehaviour {
 		imputName.Add("item_1");
 		imputName.Add("item_2");
 		imputName.Add("item_3");
+		// Les binds sont gérés par le game manager
+
 		// Player ID est initialisé dans les classes enfant
-		if ( _playerID != 0 )
-			SetKeyBinds( _playerID );
 		scale = this.transform.localScale.x;
 	}
 
@@ -82,9 +82,6 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		if ( attackCurrentDelay > 0 )
 			attackCurrentDelay -= Time.deltaTime;
-
-		if ( Input.GetKeyDown( KeyCode.F12 ) )
-			SetKeyBinds( currentKeyBind == 1 ? 2 : 1 );
 	}
 	
 	protected virtual void FixedUpdate () {

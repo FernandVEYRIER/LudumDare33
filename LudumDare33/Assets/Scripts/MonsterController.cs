@@ -22,7 +22,6 @@ public class MonsterController : BasicController {
 	
 	// Update is called once per frame
 	protected override void FixedUpdate () {
-	
 		base.FixedUpdate();
 		if (Input.GetAxis (keyBinds["Jump"]) != 0 && !timerJumpWall && !timerJump && wallJump.GetComponent<WallJump>().getWallJump()) {
 			StartCoroutine("timer_jump_wall");

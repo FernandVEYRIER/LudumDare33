@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	/*private GameObject player;
-	private GameObject monster;*/
+	private GameObject player;
+	private GameObject monster;
 
 	[Header("Canvas")]
 	public GameObject canvasPause;
@@ -27,9 +27,14 @@ public class GameManager : MonoBehaviour {
 	private float resumeDelay = 0;
 	private float currentElapsedTime;
 
+	private int currentBindP1;
+	private int currentBindP2;
 
 	void Start () 
 	{
+		currentBindP1 = 1;
+		currentBindP2 = 2;
+
 		canvasPauseSound.value = PlayerPrefs.GetFloat( "MasterVolume", 1 );
 		canvasPause.SetActive( false );
 
@@ -43,11 +48,45 @@ public class GameManager : MonoBehaviour {
 			nameP1.text = "Player 1";
 		if ( nameP2.text == "" )
 			nameP2.text = "Player 2";
+
+		player = GameObject.FindGameObjectWithTag("Player");
+		monster = GameObject.FindGameObjectWithTag("Monster");
+		player.GetComponent<PlayerController>().SetKeyBinds( currentBindP1 );
+		monster.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
 	}
-	
+
+	public void SpawnPlayer( Object player, Vector3 position, int playerType )
+	{
+		GameObject go;
+
+		go = (GameObject) Instantiate( player, position, Quaternion.identity );
+		if ( playerType == 1 )
+			go.GetComponent<MonsterController>().SetKeyBinds( currentBindP1 );
+        else if ( playerType == 2 )
+			go.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
+    }
 
 	void Update ()
 	{
+		if ( player == null )
+		{
+			player = GameObject.FindGameObjectWithTag("Player");
+		}
+		if ( monster == null )
+		{
+			monster = GameObject.FindGameObjectWithTag("Monster");
+		}
+
+		if ( Input.GetKeyDown( KeyCode.F12 ) )
+		{
+			currentBindP1 = (currentBindP1 == 1) ? 2 : 1;
+			currentBindP2 = (currentBindP2 == 2) ? 1 : 2;
+			if ( player != null )
+				player.GetComponent<PlayerController>().SetKeyBinds( currentBindP1 );
+			if ( monster != null )
+				monster.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
+		}
+
 		if ( Input.GetKeyDown( KeyCode.Joystick1Button9 ) || Input.GetKeyDown( KeyCode.Escape ) )
 		{
 			SetPause();
@@ -96,15 +135,19 @@ public class GameManager : MonoBehaviour {
 
 	public void SetRespawnTimeText( int player, int value )
 	{
-		if ( value < 0 )
-			value = 0;
+		string timeValue;
+		if ( value <= 0 )
+			timeValue = "";
+		else
+			timeValue = value.ToString();
+
 		if ( player == 1 )
 		{
-			countdownP1.text = value.ToString();
+			countdownP1.text = timeValue;
 		}
 		else if ( player == 2 )
 		{
-			countdownP2.text = value.ToString();
+			countdownP2.text = timeValue;
 		}
 	}
 
