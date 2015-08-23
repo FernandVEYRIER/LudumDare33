@@ -1005,8 +1005,8 @@ MonoBehaviour:
   countdownP2: {fileID: 11478476}
   nameP1: {fileID: 11417232}
   nameP2: {fileID: 11474706}
-  player1Sprite: {fileID: 0}
-  player2Sprite: {fileID: 0}
+  player1Sprite: {fileID: 11498146}
+  player2Sprite: {fileID: 11400348}
   inventorySpriteP1:
   - {fileID: 11417226}
   - {fileID: 11491830}
