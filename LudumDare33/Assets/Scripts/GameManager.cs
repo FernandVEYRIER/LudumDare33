@@ -8,20 +8,24 @@ public class GameManager : MonoBehaviour {
 	/*private GameObject player;
 	private GameObject monster;*/
 
+	[Header("Canvas")]
 	public GameObject canvasPause;
 	public GameObject canvasPauseButton;
 	public Slider canvasPauseSound;
+	[Header("Player")]
 	public Text countdownText;
 	public Text countdownP1;
 	public Text countdownP2;
+	public Text nameP1;
+	public Text nameP2;
+	[Header("")]
 	public EventSystem es;
-
-
+	
 	private bool isResumingGame;
 	private float resumeDelay = 0;
 	private float currentElapsedTime;
 
-	// Use this for initialization
+
 	void Start () 
 	{
 		canvasPauseSound.value = PlayerPrefs.GetFloat( "MasterVolume", 1 );
@@ -30,9 +34,16 @@ public class GameManager : MonoBehaviour {
 		Time.timeScale = 0;
 		currentElapsedTime = Time.realtimeSinceStartup + resumeDelay;
         isResumingGame = true;
+
+		nameP1.text = PlayerPrefs.GetString("Player1", "Player1");
+		nameP2.text = PlayerPrefs.GetString("Player2", "Player2");
+		if ( nameP1.text == "" )
+			nameP1.text = "Player 1";
+		if ( nameP2.text == "" )
+			nameP2.text = "Player 2";
 	}
 	
-	// Update is called once per frame
+
 	void Update ()
 	{
 		if ( Input.GetKeyDown( KeyCode.Joystick1Button9 ) || Input.GetKeyDown( KeyCode.Escape ) )
