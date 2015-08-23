@@ -2597,7 +2597,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_Offset: {x: .126982212, y: .0314555168}
   serializedVersion: 2
   m_Size: {x: 1.77205873, y: .130342484}
@@ -2636,7 +2636,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_Offset: {x: .126982212, y: .0314555168}
   serializedVersion: 2
   m_Size: {x: 1.77205873, y: .130342484}
@@ -2675,7 +2675,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_Offset: {x: .126982212, y: .0314555168}
   serializedVersion: 2
   m_Size: {x: 1.77205873, y: .130342484}
@@ -2688,7 +2688,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_Offset: {x: .126982212, y: .0314555168}
   serializedVersion: 2
   m_Size: {x: 1.77205873, y: .130342484}
@@ -2718,6 +2718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plateform: {fileID: 187754, guid: cde7f8415b60d684485c1cc52c363a62, type: 2}
   nb_blocks: 10
+  smoke: {fileID: 108184, guid: 191a1da14b18fa44ca029403a83e4cd0, type: 2}
 --- !u!114 &11431946
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2731,6 +2732,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plateform: {fileID: 187754, guid: cde7f8415b60d684485c1cc52c363a62, type: 2}
   nb_blocks: 28
+  smoke: {fileID: 108184, guid: 191a1da14b18fa44ca029403a83e4cd0, type: 2}
 --- !u!114 &11437604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2744,6 +2746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plateform: {fileID: 187754, guid: cde7f8415b60d684485c1cc52c363a62, type: 2}
   nb_blocks: 8
+  smoke: {fileID: 108184, guid: 191a1da14b18fa44ca029403a83e4cd0, type: 2}
 --- !u!114 &11471532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2757,6 +2760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plateform: {fileID: 187754, guid: cde7f8415b60d684485c1cc52c363a62, type: 2}
   nb_blocks: 30
+  smoke: {fileID: 108184, guid: 191a1da14b18fa44ca029403a83e4cd0, type: 2}
 --- !u!212 &21200622
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -4713,7 +4717,7 @@ PlatformEffector2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 133928}
-  m_Enabled: 0
+  m_Enabled: 1
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
@@ -4743,7 +4747,7 @@ PlatformEffector2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173538}
-  m_Enabled: 0
+  m_Enabled: 1
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
@@ -4818,7 +4822,7 @@ PlatformEffector2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157686}
-  m_Enabled: 0
+  m_Enabled: 1
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
@@ -4833,7 +4837,7 @@ PlatformEffector2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145994}
-  m_Enabled: 0
+  m_Enabled: 1
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
@@ -4848,7 +4852,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: smoke
+      value: 
+      objectReference: {fileID: 108184, guid: 191a1da14b18fa44ca029403a83e4cd0, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 179560}

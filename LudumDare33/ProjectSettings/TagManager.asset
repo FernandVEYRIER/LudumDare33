@@ -12,6 +12,7 @@ TagManager:
   - item
   - CursorP1
   - CursorP2
+  - mine
   layers:
   - Default
   - TransparentFX
