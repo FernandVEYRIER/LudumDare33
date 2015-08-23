@@ -3,7 +3,7 @@ using System.Collections;
 
 public class randomMap : MonoBehaviour {
 
-	public 	Transform _brick;
+	/*public 	Transform _brick;
 	public 	Transform[] _levels;
 	public 	int total_lengh = 10;
 	public 	int mode = 1;
@@ -11,12 +11,12 @@ public class randomMap : MonoBehaviour {
 	private int nb_wall;
 	private	float pos_y = 0;
 
-	// Use this for initialization
+	Use this for initialization
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
+	 Update is called once per frame
 	void Update () {
 		if (pos_y < 100) {
 			if (mode == 0) {
@@ -35,5 +35,5 @@ public class randomMap : MonoBehaviour {
 			pos_y += 10;
 			}
 		}
-	}
+	}*/
 }
