@@ -1070,7 +1070,7 @@ MonoBehaviour:
   canvasPauseButton: {fileID: 176306}
   canvasVictory: {fileID: 157616}
   canvasVictoryText: {fileID: 11439484}
-  canvasVictoryButton: {fileID: 0}
+  canvasVictoryButton: {fileID: 145324}
   canvasPauseSound: {fileID: 11438182}
   countdownText: {fileID: 11474622}
   countdownP1: {fileID: 11460998}
@@ -1255,7 +1255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: .196078435, g: .196078435, b: .196078435, a: 1}
+  m_Color: {r: .772058845, g: .772058845, b: .772058845, a: 1}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 85a0c2bbce5dbdb409ec8fdfab48a426, type: 3}
     m_FontSize: 100
