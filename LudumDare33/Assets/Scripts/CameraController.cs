@@ -55,7 +55,8 @@ public class CameraController : MonoBehaviour {
 		else if ( col.gameObject.tag == "Player" )
 		{
 			//Debug.Log(smoke.GetComponent<Animation>().clip.length);
-			Instantiate( smoke, col.gameObject.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity );
+			 GameObject _smoke = (GameObject) Instantiate( smoke, col.gameObject.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity );
+			Destroy(_smoke, 1f);
 			Destroy( col.gameObject );
 			this.transform.GetChild(2).gameObject.GetComponentInChildren<TryRespawnPawn>().HasToRespawnPlayer = 1;
 		}

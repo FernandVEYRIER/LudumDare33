@@ -57,7 +57,6 @@ public class PlayerController : BasicController {
 				index = inventory.IndexOf(obj);
 			}
 			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(col.collider.gameObject.GetComponent<Item>().sprite, index, playerID);
-			print (inventory[0]);
 			Destroy(col.collider.gameObject);
 		}
 	}

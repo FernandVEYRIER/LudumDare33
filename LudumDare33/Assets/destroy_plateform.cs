@@ -7,9 +7,11 @@ public class destroy_plateform : MonoBehaviour {
 	public GameObject plateform;
 	public int nb_blocks;
 	private List<GameObject> plateforms = new List<GameObject>();
+	private bool monster_die = false;
+	public GameObject smoke;
+
 	// Use this for initialization
 	void Awake () {
-
 
 		for (int i = 0; i < nb_blocks; i++) {
 			GameObject tmp;
@@ -27,7 +29,6 @@ public class destroy_plateform : MonoBehaviour {
 		if (this.transform.parent.localScale.x == -1) {
 			box.offset = new Vector2 (((size - plateform.GetComponent<SpriteRenderer> ().sprite.bounds.size.x * plateform.transform.localScale.x) * this.transform.parent.localScale.x) / 2, 0);
 		} else if (this.transform.parent.localScale.x == 1) {
-			print ("plop");
 			box.offset = new Vector2 ((-size + plateform.GetComponent<SpriteRenderer> ().sprite.bounds.size.x * plateform.transform.localScale.x) / 2 , 0);
 		} else {
 			box.offset = new Vector2 ((size) / 2, 0);
@@ -35,6 +36,8 @@ public class destroy_plateform : MonoBehaviour {
 	}
 
 	public void destruct(){
+
+
 		foreach (GameObject item in plateforms) {
 
 			if (!item.GetComponent<enable_explosion>().getRigid()) {
@@ -43,13 +46,22 @@ public class destroy_plateform : MonoBehaviour {
 				this.GetComponent<BoxCollider2D>().enabled = false;
 			}
 		}
+		if (monster_die) {
+
+			monster_die = false;
+			GameObject i_smoke = (GameObject) Instantiate( smoke, GameObject.FindGameObjectWithTag("Monster").gameObject.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity );
+			Destroy(i_smoke, 1f);
+			Destroy( GameObject.FindGameObjectWithTag("Monster").gameObject );
+			GameObject.Find("MonsterRespawnZone").GetComponentInChildren<TryRespawnPawn>().HasToRespawnPlayer = 2;
+		}
 		Destroy (gameObject, 2);
 	}
-////	// Update is called once per frame
-//	void OnCollisionEnter2D (Collision2D col) {
-//
-//		if (col.collider.tag == "Monster" && col.collider.GetComponent<MonsterController>().getDash()) {
-//			this.GetComponent<BoxCollider2D>().enabled = false;
-//		}
-//	}
+	// Update is called once per frame
+	void OnCollisionEnter2D (Collision2D col) {
+
+		if (col.collider.tag == "mine") {
+			print ("coucou");
+			monster_die = true;
+		}
+	}
 }
