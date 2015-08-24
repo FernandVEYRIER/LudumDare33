@@ -20,15 +20,15 @@ public class PlayerController : BasicController {
 	protected override void Update() {
 		base.Update();
 		if (GetType() == typeof (PlayerController)) {
-			if (Input.GetAxis (keyBinds ["item_1"]) != 0 && inventory[0] != null) {
+			if (Input.GetAxis (keyBinds ["item_1"]) != 0 && inventory.Count >= 1 && inventory[0] != null) {
 				Instantiate(inventory[0], this.transform.position, Quaternion.identity);
 				inventory[0] = null;
 				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(null, 0, playerID);
-			} else if (Input.GetAxis (keyBinds ["item_2"]) != 0 && inventory[1] != null) {
+			} else if (Input.GetAxis (keyBinds ["item_2"]) != 0  && inventory.Count >= 2 && inventory[1] != null) {
 				Instantiate(inventory[1], this.transform.position, Quaternion.identity);
 				inventory[1] = null;
 				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(null, 1, playerID);
-			} else if (Input.GetAxis (keyBinds ["item_3"]) != 0 && inventory[2] != null) {
+			} else if (Input.GetAxis (keyBinds ["item_3"]) != 0 && inventory.Count == 3 && inventory[2] != null) {
 				Instantiate(inventory[2], this.transform.position, Quaternion.identity);
 				inventory[2] = null;
 				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(null, 2, playerID);
