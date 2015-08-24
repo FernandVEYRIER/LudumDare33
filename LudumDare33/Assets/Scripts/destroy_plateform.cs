@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class destroy_plateform : MonoBehaviour {
 
-	public AudioClip sound;
+	public AudioClip [] sound;
 	private AudioSource audioSource;
 	public GameObject plateform;
 	public int nb_blocks;
@@ -56,9 +56,9 @@ public class destroy_plateform : MonoBehaviour {
 			Destroy(i_smoke, 1f);
 			Destroy( GameObject.FindGameObjectWithTag("Monster").gameObject );
 			GameObject.Find("MonsterRespawnZone").GetComponentInChildren<TryRespawnPawn>().HasToRespawnPlayer = 2;
+			audioSource.PlayOneShot( sound[1] );
 		}
-		Debug.Log("HERE");
-		audioSource.PlayOneShot( sound );
+		audioSource.PlayOneShot( sound[0] );
 		Destroy (gameObject, 2);
 	}
 	// Update is called once per frame

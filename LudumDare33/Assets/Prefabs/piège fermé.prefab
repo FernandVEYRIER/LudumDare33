@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d9ebcd072b5a0a4ab419d467d77d42b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sound: {fileID: 8300000, guid: c8cd41975773fba43988858eadba4e96, type: 3}
 --- !u!212 &21256998
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -112,6 +113,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sound
+      value: 
+      objectReference: {fileID: 8300000, guid: c8cd41975773fba43988858eadba4e96, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157502}
