@@ -12,7 +12,7 @@ public class zip : MonoBehaviour {
 	void Start () {
 		player = GameObject.FindGameObjectWithTag ("Player");
 		player.GetComponent<BasicController> ().PlayerAttack (0);
-		Destroy(this, 1.5f);
+		Destroy(gameObject, 1.5f);
 	}
 
 	void Update() {
