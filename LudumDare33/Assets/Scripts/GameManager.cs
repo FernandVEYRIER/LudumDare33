@@ -169,8 +169,9 @@ public class GameManager : MonoBehaviour {
 		}
 		else
 		{
-			currentSwapDelay = Random.Range( minSwapDelay, maxSwapDelay + 1);
-			SwitchPlayers();
+			currentSwapDelay = Random.Range( minSwapDelay, maxSwapDelay + 1 );
+			if ( isGameRunning )
+				SwitchPlayers();
 		}
 
 		if ( Input.GetKeyDown( KeyCode.F12 ) )

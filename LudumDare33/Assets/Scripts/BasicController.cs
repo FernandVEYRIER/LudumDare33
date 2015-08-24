@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public abstract class BasicController : MonoBehaviour {
 
+	public AudioClip [] sounds;
+	private AudioSource audioSource;
+
 	public float jump_strenght = 0;
 	public float horizontal_strenght = 0;
 	protected float attackDelay = 0.3f;
@@ -60,6 +63,8 @@ public abstract class BasicController : MonoBehaviour {
 
 		// Player ID est initialisé dans les classes enfant
 		scale = this.transform.localScale.x;
+
+		audioSource = this.GetComponent<AudioSource>();
 	}
 
 	public void SetKeyBinds( int characterID )
@@ -105,6 +110,7 @@ public abstract class BasicController : MonoBehaviour {
 		// Si le controller est un monstre, on fait le shake de caméra quand il retombe
 		if ( jump.GetComponent<Jump>().Landed && GetType() == typeof(MonsterController) && doubleJumped )
 		{
+			audioSource.PlayOneShot( sounds[1] );
 			Camera.main.transform.parent.GetComponent<CameraController>().PlayShakeAnim();
 			doubleJumped = false;
         }
@@ -153,11 +159,13 @@ public abstract class BasicController : MonoBehaviour {
 		{
 			attackCurrentDelay = attackDelay;
 			animator.SetTrigger( animAttack );
+			audioSource.PlayOneShot( sounds[0] );
 		}
 		if ( this.GetType() == typeof(PlayerController) )
 		{
 			animator.SetInteger( animID, animAttackID );
 			animator.SetTrigger( animAttack );
+			audioSource.PlayOneShot( sounds[animAttackID] );
         }
     }
     
@@ -165,6 +173,7 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		animator.SetTrigger( animDeath );
 		isDead = true;
+		audioSource.PlayOneShot( sounds[0] );
 	}
 
 	public bool IsDead
