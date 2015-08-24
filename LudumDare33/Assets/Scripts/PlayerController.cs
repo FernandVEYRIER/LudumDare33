@@ -43,7 +43,7 @@ public class PlayerController : BasicController {
 			int i = 0;
 			GameObject obj = null;
 			int index;
-			audioSource.PlayOneShot( sounds[1] );
+			audioSource.PlayOneShot( sounds[2] );
 			foreach (GameObject item in inventory) {
 				if (item == null) {
 					obj = col.collider.gameObject.GetComponent<Item>().prefabs;

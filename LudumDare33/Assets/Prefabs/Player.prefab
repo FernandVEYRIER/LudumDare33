@@ -310,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - {fileID: 8300000, guid: 6be5f25de4367b34dba59e19924cd881, type: 3}
   - {fileID: 8300000, guid: 9cdba7bcaf2818b42bd933fffab0e0cc, type: 3}
   - {fileID: 8300000, guid: 1f864a073d713e04dbb65c24a69aa9b5, type: 3}
   jump_strenght: 300

@@ -177,7 +177,7 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		animator.SetTrigger( animDeath );
 		isDead = true;
-		audioSource.PlayOneShot( sounds[0] );
+		audioSource.PlayOneShot( sounds[1] );
 	}
 
 	public void Lives()

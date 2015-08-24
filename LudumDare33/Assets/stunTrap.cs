@@ -3,7 +3,16 @@ using System.Collections;
 
 public class stunTrap : MonoBehaviour {
 
+	public AudioClip sound;
+
 	private bool use = false;
+	private AudioSource audioSource;
+
+	void Start()
+	{
+		audioSource = this.GetComponent<AudioSource>();
+	}
+
 	void OnCollisionEnter2D(Collision2D col) {
 
 		if (col.collider.tag == "Monster" && !use) {
@@ -11,6 +20,7 @@ public class stunTrap : MonoBehaviour {
 			this.GetComponent<BoxCollider2D>().enabled = false;
 			use = true;
 			StartCoroutine(move_timer(col));
+			audioSource.PlayOneShot( sound );
 		}
 	}
 	IEnumerator move_timer(Collision2D col) {
