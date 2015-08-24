@@ -149,12 +149,19 @@ public abstract class BasicController : MonoBehaviour {
 
 	protected virtual void Attack()
 	{
-		attackCurrentDelay = attackDelay;
-		animator.SetInteger( animID, animAttackID );
-		animator.SetTrigger( animAttack );
-	}
-
-	public void Die()
+		if ( this.GetType() == typeof(MonsterController) )
+		{
+			attackCurrentDelay = attackDelay;
+			animator.SetTrigger( animAttack );
+		}
+		if ( this.GetType() == typeof(PlayerController) )
+		{
+			animator.SetInteger( animID, animAttackID );
+			animator.SetTrigger( animAttack );
+        }
+    }
+    
+    public void Die()
 	{
 		animator.SetTrigger( animDeath );
 		isDead = true;
