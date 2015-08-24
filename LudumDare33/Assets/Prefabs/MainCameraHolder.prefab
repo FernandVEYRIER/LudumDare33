@@ -66,6 +66,7 @@ GameObject:
   - 61: {fileID: 6127440}
   - 114: {fileID: 11446376}
   - 50: {fileID: 5040248}
+  - 114: {fileID: 11478424}
   m_Layer: 0
   m_Name: PlayerRespawnZone
   m_TagString: Untagged
@@ -285,6 +286,24 @@ MonoBehaviour:
   playerPrefab: {fileID: 128618, guid: 4fed3ad54fcf2f941a2301e2fb45800a, type: 2}
   monsterPrefab: {fileID: 196366, guid: fcd801aeba224b4458a89e0180ce67a2, type: 2}
   respawnDelay: 1
+--- !u!114 &11478424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b468425befaf14d47bb87ee5b0d0eea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - obj: {fileID: 131700, guid: 898bc509c504a4e4da3db26bd861c3ba, type: 2}
+    percents: 1
+  - obj: {fileID: 195154, guid: 390281c1c18b3aa4a893b5cb4931ea09, type: 2}
+    percents: 1
+  - obj: {fileID: 164994, guid: 4ca45fb5d17b5ad44a025485582ee975, type: 2}
+    percents: 1
 --- !u!114 &11487356
 MonoBehaviour:
   m_ObjectHideFlags: 1

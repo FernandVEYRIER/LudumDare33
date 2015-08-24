@@ -165,7 +165,7 @@ public abstract class BasicController : MonoBehaviour {
 		}
     }
 
-	protected void PlayerAttack( int _animID)
+	public void PlayerAttack( int _animID)
 	{
 		animID = _animID;
 		animator.SetInteger( animID, animAttackID );
