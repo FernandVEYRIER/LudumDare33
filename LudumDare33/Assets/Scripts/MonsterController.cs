@@ -69,10 +69,10 @@ public class MonsterController : BasicController {
 
 	protected override void Attack()
 	{
-		RaycastHit2D [] ray = Physics2D.CircleCastAll( this.transform.position, 0.2f, Vector2.right );
+		// On trace une sphère devant le joueur pour voir si on a touché le héros
+		Collider2D [] ray = Physics2D.OverlapCircleAll( this.transform.position + -this.transform.right * this.transform.localScale.x / 2, 0.25f );
 		base.Attack();
-
-		foreach ( RaycastHit2D rc in ray )
+		foreach ( Collider2D rc in ray )
 		{
 			if ( rc.transform.gameObject.tag == "Player" )
 			{

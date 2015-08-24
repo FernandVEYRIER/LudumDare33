@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour {
 
 	// TODO :
 	//		  objets
-	//		  portée du monstre
 	//		  saut du monstre
 
 	private GameObject player;
