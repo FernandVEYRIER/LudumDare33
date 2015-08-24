@@ -77,4 +77,12 @@ public class TryRespawnPawn : MonoBehaviour {
 				hasToRespawnPlayer = 0;
 		}
 	}
+	public Vector3 LastValidPlateform
+	{
+		get { return lastValidPlateform; }
+		set
+		{
+			lastValidPlateform = value; 
+		}
+	}
 }
