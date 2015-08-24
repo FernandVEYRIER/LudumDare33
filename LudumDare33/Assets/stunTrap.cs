@@ -24,8 +24,11 @@ public class stunTrap : MonoBehaviour {
 		}
 	}
 	IEnumerator move_timer(Collision2D col) {
+
 		col.collider.GetComponent<MonsterController>().CanMove = false;
+		col.collider.GetComponent<SpriteRenderer> ().color = Color.red;
 		yield return new WaitForSeconds (1);
+		col.collider.GetComponent<SpriteRenderer> ().color = Color.white;
 		col.collider.GetComponent<MonsterController>().CanMove = true;
 		Destroy (this.gameObject);
 	}
