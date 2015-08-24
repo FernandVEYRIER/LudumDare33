@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class destroy_plateform : MonoBehaviour {
 
+	public AudioClip sound;
+	private AudioSource audioSource;
 	public GameObject plateform;
 	public int nb_blocks;
 	private List<GameObject> plateforms = new List<GameObject>();
@@ -13,6 +15,7 @@ public class destroy_plateform : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
+		audioSource = this.GetComponent<AudioSource>();
 		for (int i = 0; i < nb_blocks; i++) {
 			GameObject tmp;
 			if (this.transform.parent) {
@@ -54,6 +57,8 @@ public class destroy_plateform : MonoBehaviour {
 			Destroy( GameObject.FindGameObjectWithTag("Monster").gameObject );
 			GameObject.Find("MonsterRespawnZone").GetComponentInChildren<TryRespawnPawn>().HasToRespawnPlayer = 2;
 		}
+		Debug.Log("HERE");
+		audioSource.PlayOneShot( sound );
 		Destroy (gameObject, 2);
 	}
 	// Update is called once per frame
