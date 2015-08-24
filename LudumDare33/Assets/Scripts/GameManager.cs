@@ -279,17 +279,29 @@ public class GameManager : MonoBehaviour {
 		if ( player == 1 )
 		{
 			if ( currentBindP1 == 1 )
+			{
+				ResetInventory( 1 );
 				countdownP1.text = timeValue;
+			}
 			else
+			{
 				countdownP2.text = timeValue;
+				ResetInventory( 2 );
+			}
 		}
 		// Et inversement pour le monstre
 		else if ( player == 2 )
 		{
 			if ( currentBindP2 == 1 )
+			{
 				countdownP1.text = timeValue;
+				ResetInventory( 1 );
+			}
 			else
+			{
 				countdownP2.text = timeValue;
+				ResetInventory( 2 );
+			}
 		}
 	}
 
@@ -336,12 +348,14 @@ public class GameManager : MonoBehaviour {
         }
 	}
 
-	public void ResetInventory()
+	public void ResetInventory( int playerID )
 	{
 		for ( int i = 0; i < 3; i++ )
 		{
-			inventorySpriteP1[i].sprite = defaultSpriteInventory;
-			inventorySpriteP2[i].sprite = defaultSpriteInventory;
+			if ( playerID == 1 )
+				inventorySpriteP1[i].sprite = defaultSpriteInventory;
+			else if ( playerID == 2 )
+				inventorySpriteP2[i].sprite = defaultSpriteInventory;
 		}
 	}
 

@@ -163,13 +163,15 @@ public abstract class BasicController : MonoBehaviour {
 			animator.SetTrigger( animAttack );
 			audioSource.PlayOneShot( sounds[0] );
 		}
-		if ( this.GetType() == typeof(PlayerController) )
-		{
-			animator.SetInteger( animID, animAttackID );
-			animator.SetTrigger( animAttack );
-			audioSource.PlayOneShot( sounds[animAttackID] );
-        }
     }
+
+	protected void PlayerAttack( int _animID)
+	{
+		animID = _animID;
+		animator.SetInteger( animID, animAttackID );
+		animator.SetTrigger( animAttack );
+		audioSource.PlayOneShot( sounds[animAttackID] );
+	}
     
     public void Die()
 	{
