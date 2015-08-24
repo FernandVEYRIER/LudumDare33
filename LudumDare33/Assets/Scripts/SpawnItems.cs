@@ -28,14 +28,17 @@ public class SpawnItems : MonoBehaviour {
 	
 		if (canSpawn) {
 			StartCoroutine("Spawn");
-			int index = Random.Range(0, item_spawn.Count -1);
-			Instantiate(item_spawn[index], this.GetComponent<TryRespawnPawn>().LastValidPlateform, Quaternion.identity);
+			int index = Random.Range(0, item_spawn.Count);
+			if (!this.GetComponent<TryRespawnPawn>().Use) {
+				this.GetComponent<TryRespawnPawn>().Use = true;
+				Instantiate(item_spawn[index], this.GetComponent<TryRespawnPawn>().LastValidPlateform, Quaternion.identity);
+			}
 		}
 	}
 
 	IEnumerator Spawn() {
 		canSpawn = false;
-		yield return new WaitForSeconds(Random.Range(3,6));
+		yield return new WaitForSeconds(Random.Range(4,7));
 		canSpawn = true;
 	}
 }

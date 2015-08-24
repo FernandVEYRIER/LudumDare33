@@ -26,7 +26,7 @@ public abstract class BasicController : MonoBehaviour {
 	protected int animAttackID;
 
 	private int animVerticalVel;
-	private int animHorizontalVel;
+	protected int animHorizontalVel;
 	private int animIsGrounded;
 	private int animAttack;
 	private int animDeath;

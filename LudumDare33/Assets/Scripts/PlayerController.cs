@@ -50,7 +50,6 @@ public class PlayerController : BasicController {
 				}
 				i++;
 			}
-
 			if (obj != null) {
 				index = i;
 				inventory.Insert(i, obj);
@@ -61,7 +60,6 @@ public class PlayerController : BasicController {
 			}
 			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(col.collider.gameObject.GetComponent<Item>().sprite, index, 1);
 			Destroy(col.collider.gameObject);
-
 		}
 	}
 }

@@ -1,43 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &131700
+--- !u!1 &195154
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 464132}
-  - 212: {fileID: 21261500}
-  - 61: {fileID: 6152400}
-  - 114: {fileID: 11457554}
-  - 50: {fileID: 5038928}
+  - 4: {fileID: 450506}
+  - 212: {fileID: 21204364}
+  - 61: {fileID: 6126844}
+  - 50: {fileID: 5042942}
+  - 114: {fileID: 11409728}
   m_Layer: 0
-  m_Name: mine
+  m_Name: "pi\xE8ge \xE0 loup"
   m_TagString: item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &464132
+--- !u!4 &450506
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131700}
+  m_GameObject: {fileID: 195154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .196739495, y: .196739644, z: .196739644}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5038928
+--- !u!50 &5042942
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131700}
+  m_GameObject: {fileID: 195154}
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: .0500000007
@@ -47,38 +47,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &6152400
+--- !u!61 &6126844
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131700}
+  m_GameObject: {fileID: 195154}
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -.0385946333, y: -.0222488642}
+  m_Offset: {x: -.00714123249, y: -.0285646915}
   serializedVersion: 2
-  m_Size: {x: .44761461, y: .409545183}
---- !u!114 &11457554
+  m_Size: {x: 1.75743055, y: 1.42893553}
+--- !u!114 &11409728
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131700}
+  m_GameObject: {fileID: 195154}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad3d1cf90983bea46bfabb81282a2b5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabs: {fileID: 147642, guid: 3baeff92eb209854fb9edecb95f431c2, type: 2}
-  sprite: {fileID: 21300000, guid: 4111644903b86ee468f2505ff66acb99, type: 3}
---- !u!212 &21261500
+  prefabs: {fileID: 157502, guid: aec24d416124f6547a8b8f9aae52243e, type: 2}
+  sprite: {fileID: 21300000, guid: e8b2aedfd40bfaa4b965a9063ddb4feb, type: 3}
+--- !u!212 &21204364
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131700}
+  m_GameObject: {fileID: 195154}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -97,7 +97,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4111644903b86ee468f2505ff66acb99, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8b2aedfd40bfaa4b965a9063ddb4feb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
@@ -109,11 +109,11 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: prefabs
       value: 
-      objectReference: {fileID: 147642, guid: 3baeff92eb209854fb9edecb95f431c2, type: 2}
+      objectReference: {fileID: 157502, guid: aec24d416124f6547a8b8f9aae52243e, type: 2}
     - target: {fileID: 0}
       propertyPath: sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4111644903b86ee468f2505ff66acb99,
+      objectReference: {fileID: 21300000, guid: e8b2aedfd40bfaa4b965a9063ddb4feb,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_TagString
@@ -121,5 +121,5 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 131700}
+  m_RootGameObject: {fileID: 195154}
   m_IsPrefabParent: 1

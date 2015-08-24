@@ -8,6 +8,7 @@ public class MonsterController : BasicController {
 	private bool timerJumpWall = false;
 	private bool dash = false;
 	private bool can_dash = false;
+	private bool can_move = true;
 	// Use this for initialization
 
 	protected override void Awake()
@@ -23,27 +24,32 @@ public class MonsterController : BasicController {
 	
 	// Update is called once per frame
 	protected override void FixedUpdate () {
-		base.FixedUpdate();
-		if (Input.GetAxis (keyBinds["Jump"]) != 0 && !timerJumpWall && !timerJump && wallJump.GetComponent<WallJump>().getWallJump()) {
-			StartCoroutine("timer_jump_wall");
-			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(200 * this.transform.localScale.x, 375));
-			WallJump = true;
-			doubleJumped = true;
-		}
-		if (jump.GetComponent<Jump>().getCanJump()) {
-			WallJump = false;
-		}
-		if (Input.GetAxis (keyBinds["Dash"]) != 0 && !can_dash) {
-			StartCoroutine("timer_dash");
-			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 550));
-			doubleJumped = true;
-		}
-		explosion.GetComponent<CircleCollider2D> ().enabled = dash;
-		if (dash && this.gameObject.GetComponent<Rigidbody2D> ().velocity.y < 0) {
-			dash = false;
-			this.gameObject.layer = 9;
+
+		if (can_move) {
+			base.FixedUpdate ();
+			if (Input.GetAxis (keyBinds ["Jump"]) != 0 && !timerJumpWall && !timerJump && wallJump.GetComponent<WallJump> ().getWallJump ()) {
+				StartCoroutine ("timer_jump_wall");
+				this.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+				this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (200 * this.transform.localScale.x, 375));
+				WallJump = true;
+				doubleJumped = true;
+			}
+			if (jump.GetComponent<Jump> ().getCanJump ()) {
+				WallJump = false;
+			}
+			if (Input.GetAxis (keyBinds ["Dash"]) != 0 && !can_dash) {
+				StartCoroutine ("timer_dash");
+				this.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+				this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (0, 550));
+				doubleJumped = true;
+			}
+			explosion.GetComponent<CircleCollider2D> ().enabled = dash;
+			if (dash && this.gameObject.GetComponent<Rigidbody2D> ().velocity.y < 0) {
+				dash = false;
+				this.gameObject.layer = 9;
+			}
+		} else {
+			animator.SetFloat(animHorizontalVel , 0);
 		}
 	}
 
@@ -89,5 +95,11 @@ public class MonsterController : BasicController {
 			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().DisplayVictory( this, playerID );
 			wallJump.GetComponent<WallJump>().CollidedObj.GetComponent<PlayerController>().Die();
 		}*/
+	}
+
+	public bool CanMove
+	{
+		get { return can_move; }
+		set { can_move = value; }
 	}
 }

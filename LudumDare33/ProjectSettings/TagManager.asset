@@ -13,6 +13,7 @@ TagManager:
   - CursorP1
   - CursorP2
   - mine
+  - trap
   layers:
   - Default
   - TransparentFX
