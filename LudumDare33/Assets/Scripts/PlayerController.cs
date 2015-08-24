@@ -38,28 +38,28 @@ public class PlayerController : BasicController {
 
 	void OnCollisionEnter2D(Collision2D col) {
 
-		if (col.collider.tag == "item" && inventory.Count < 4) {
+		if (col.collider.tag == "item" && inventory.Count < 3) {
 
 			int i = 0;
 			GameObject obj = null;
 			int index;
-			foreach (var item in inventory) {
+			foreach (GameObject item in inventory) {
 				if (item == null) {
 					obj = col.collider.gameObject.GetComponent<Item>().prefabs;
 					break;
 				}
 				i++;
 			}
+
 			if (obj != null) {
 				index = i;
 				inventory.Insert(i, obj);
 			} else {
-
 				obj = col.collider.gameObject.GetComponent<Item>().prefabs;
 				inventory.Add(obj);
-				index = inventory.IndexOf(obj);
+				index = inventory.Count - 1;
 			}
-			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(col.collider.gameObject.GetComponent<Item>().sprite, index, playerID);
+			GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().AddItem(col.collider.gameObject.GetComponent<Item>().sprite, index, 1);
 			Destroy(col.collider.gameObject);
 
 		}
