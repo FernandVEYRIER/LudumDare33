@@ -20,13 +20,15 @@ public abstract class BasicController : MonoBehaviour {
 	protected bool WallJump = false;
 
 	protected Animator animator;
+	protected int animAttackID;
 
 	private int animVerticalVel;
 	private int animHorizontalVel;
 	private int animIsGrounded;
 	private int animAttack;
 	private int animDeath;
-
+	private int animID;
+	
 	private float attackCurrentDelay;
 	private bool isDead;
 
@@ -42,6 +44,7 @@ public abstract class BasicController : MonoBehaviour {
 		animIsGrounded = Animator.StringToHash( "isGrounded" );
 		animAttack = Animator.StringToHash( "Attack" );
 		animDeath = Animator.StringToHash( "Die" );
+		animID = Animator.StringToHash( "AnimID" );
 
 		attackCurrentDelay = 0;
 
@@ -147,6 +150,7 @@ public abstract class BasicController : MonoBehaviour {
 	protected virtual void Attack()
 	{
 		attackCurrentDelay = attackDelay;
+		animator.SetInteger( animID, animAttackID );
 		animator.SetTrigger( animAttack );
 	}
 
