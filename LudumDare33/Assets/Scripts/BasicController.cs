@@ -91,8 +91,6 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		if ( attackCurrentDelay > 0 )
 			attackCurrentDelay -= Time.deltaTime;
-		if ( Input.GetKeyDown( KeyCode.F12 ) )
-			animator.SetTrigger( "AnimEnd" );
 	}
 	
 	protected virtual void FixedUpdate () {
