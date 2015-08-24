@@ -64,7 +64,7 @@ public class MonsterController : BasicController {
 		dash = true;
 		can_dash = true;
 		this.gameObject.layer = 10;
-		yield return new WaitForSeconds (2f);
+		yield return new WaitForSeconds (5f);
 		this.gameObject.layer = 9;
 		dash = false;
 		can_dash = false;
