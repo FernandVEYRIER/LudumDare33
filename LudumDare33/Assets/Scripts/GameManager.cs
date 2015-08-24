@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour {
 	public Image [] inventorySpriteP2;
 	public GameObject player1Cursor;
 	public GameObject player2Cursor;
+	public Sprite defaultSpriteInventory;
 	[Header("")]
 	public EventSystem es;
 	// Détermine l'intervalle de temps pour le swap
@@ -101,6 +102,7 @@ public class GameManager : MonoBehaviour {
 			go.GetComponent<PlayerController>().SetKeyBinds( currentBindP1 );
         else if ( playerType == 2 )
 			go.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
+		ResetInventory();
     }
 
 	void Update ()
@@ -334,6 +336,15 @@ public class GameManager : MonoBehaviour {
 		{
 			inventorySpriteP2[index].sprite = _sprite;
         }
+	}
+
+	public void ResetInventory()
+	{
+		for ( int i = 0; i < 3; i++ )
+		{
+			inventorySpriteP1[i].sprite = defaultSpriteInventory;
+			inventorySpriteP2[i].sprite = defaultSpriteInventory;
+		}
 	}
 
 	public void RestartLevel()
