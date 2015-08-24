@@ -1475,7 +1475,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 158344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.02600002, y: -3.85599995, z: 0}
+  m_LocalPosition: {x: -1.67999995, y: -3.85599995, z: 0}
   m_LocalScale: {x: -1, y: 1, z: .178639993}
   m_Children: []
   m_Father: {fileID: 488164}
@@ -2731,7 +2731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plateform: {fileID: 187754, guid: cde7f8415b60d684485c1cc52c363a62, type: 2}
-  nb_blocks: 28
+  nb_blocks: 25
   smoke: {fileID: 108184, guid: 191a1da14b18fa44ca029403a83e4cd0, type: 2}
 --- !u!114 &11437604
 MonoBehaviour:
