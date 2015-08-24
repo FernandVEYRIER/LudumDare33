@@ -102,7 +102,6 @@ public class GameManager : MonoBehaviour {
 			go.GetComponent<PlayerController>().SetKeyBinds( currentBindP1 );
         else if ( playerType == 2 )
 			go.GetComponent<MonsterController>().SetKeyBinds( currentBindP2 );
-		ResetInventory();
     }
 
 	void Update ()
