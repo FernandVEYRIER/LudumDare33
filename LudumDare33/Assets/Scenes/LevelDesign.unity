@@ -126,6 +126,34 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6118736, guid: fcd801aeba224b4458a89e0180ce67a2, type: 2}
+      propertyPath: m_Offset.x
+      value: .0959858447
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118736, guid: fcd801aeba224b4458a89e0180ce67a2, type: 2}
+      propertyPath: m_Offset.y
+      value: .0603036582
+      objectReference: {fileID: 0}
+    - target: {fileID: 6118736, guid: fcd801aeba224b4458a89e0180ce67a2, type: 2}
+      propertyPath: m_Size.x
+      value: .825056076
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177620, guid: fcd801aeba224b4458a89e0180ce67a2, type: 2}
+      propertyPath: m_Offset.x
+      value: .0960997194
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177620, guid: fcd801aeba224b4458a89e0180ce67a2, type: 2}
+      propertyPath: m_Offset.y
+      value: -.505539238
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177620, guid: fcd801aeba224b4458a89e0180ce67a2, type: 2}
+      propertyPath: m_Size.x
+      value: .79499042
+      objectReference: {fileID: 0}
+    - target: {fileID: 6177620, guid: fcd801aeba224b4458a89e0180ce67a2, type: 2}
+      propertyPath: m_Size.y
+      value: .205581218
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fcd801aeba224b4458a89e0180ce67a2, type: 2}
   m_IsPrefabParent: 0
@@ -165,14 +193,14 @@ MonoBehaviour:
   templates:
   - {fileID: 179560, guid: f36241ec2b41e414bab68c9336ccd36d, type: 2}
   - {fileID: 198086, guid: 228b7b71cb1f9a542a1a2cab19d35c41, type: 2}
+  - {fileID: 176942, guid: 302249d976fc19241a796b833d029f84, type: 2}
   - {fileID: 179560, guid: f36241ec2b41e414bab68c9336ccd36d, type: 2}
   - {fileID: 198086, guid: 228b7b71cb1f9a542a1a2cab19d35c41, type: 2}
+  - {fileID: 176942, guid: 302249d976fc19241a796b833d029f84, type: 2}
   - {fileID: 179560, guid: f36241ec2b41e414bab68c9336ccd36d, type: 2}
   - {fileID: 198086, guid: 228b7b71cb1f9a542a1a2cab19d35c41, type: 2}
+  - {fileID: 176942, guid: 302249d976fc19241a796b833d029f84, type: 2}
   - {fileID: 179560, guid: f36241ec2b41e414bab68c9336ccd36d, type: 2}
-  - {fileID: 198086, guid: 228b7b71cb1f9a542a1a2cab19d35c41, type: 2}
-  - {fileID: 179560, guid: f36241ec2b41e414bab68c9336ccd36d, type: 2}
-  - {fileID: 198086, guid: 228b7b71cb1f9a542a1a2cab19d35c41, type: 2}
 --- !u!4 &895742577
 Transform:
   m_ObjectHideFlags: 0
