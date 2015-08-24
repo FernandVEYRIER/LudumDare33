@@ -174,11 +174,6 @@ public class GameManager : MonoBehaviour {
 				SwitchPlayers();
 		}
 
-		if ( Input.GetKeyDown( KeyCode.F12 ) )
-		{
-			SwitchPlayers();
-		}
-
 		if ( Input.GetKeyDown( KeyCode.Joystick1Button9 ) || Input.GetKeyDown( KeyCode.Escape ) )
 		{
 			SetPause();
@@ -321,6 +316,7 @@ public class GameManager : MonoBehaviour {
 		{
 			Debug.Log("Human " + playerName + " wins !" );
 			canvasVictoryText.text = "Human " + playerName + " wins !";
+			player.GetComponent<PlayerController>().Lives();
         }
 		isGameRunning = false;
 		GameObject.Find ("MainCameraHolder").GetComponent<CameraController>().speed = 0;

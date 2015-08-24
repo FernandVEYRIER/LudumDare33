@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1fa25a644bc24014c956f0880e58b755
-timeCreated: 1440327217
+timeCreated: 1440453123
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -11,6 +11,7 @@ TextureImporter:
     21300008: "human_\xE9clair_sheet_4"
     21300010: "human_\xE9clair_sheet_5"
     21300012: "human_\xE9clair_sheet_6"
+    21300014: "human_\xE9clair_sheet_7"
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -125,6 +126,16 @@ TextureImporter:
         height: 2010
       alignment: 9
       pivot: {x: .5, y: .920000017}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: "human_\xE9clair_sheet_7"
+      rect:
+        serializedVersion: 2
+        x: 1804
+        y: 1787
+        width: 244
+        height: 217
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

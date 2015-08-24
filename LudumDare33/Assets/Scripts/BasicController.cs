@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public abstract class BasicController : MonoBehaviour {
 
 	public AudioClip [] sounds;
-	private AudioSource audioSource;
+	protected AudioSource audioSource;
 
 	public float jump_strenght = 0;
 	public float horizontal_strenght = 0;
@@ -91,6 +91,8 @@ public abstract class BasicController : MonoBehaviour {
 	{
 		if ( attackCurrentDelay > 0 )
 			attackCurrentDelay -= Time.deltaTime;
+		if ( Input.GetKeyDown( KeyCode.F12 ) )
+			animator.SetTrigger( "AnimEnd" );
 	}
 	
 	protected virtual void FixedUpdate () {
@@ -174,6 +176,12 @@ public abstract class BasicController : MonoBehaviour {
 		animator.SetTrigger( animDeath );
 		isDead = true;
 		audioSource.PlayOneShot( sounds[0] );
+	}
+
+	public void Lives()
+	{
+		animator.SetTrigger( "AnimEnd" );
+		isDead = true;
 	}
 
 	public bool IsDead

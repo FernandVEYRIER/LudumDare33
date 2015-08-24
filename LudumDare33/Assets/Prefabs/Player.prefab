@@ -90,7 +90,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 128618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.86000001, y: -4.06860018, z: 0}
+  m_LocalPosition: {x: -1.86000001, y: 2.88000011, z: 0}
   m_LocalScale: {x: .46091637, y: .46091637, z: .46091637}
   m_Children:
   - {fileID: 488222}
@@ -311,6 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - {fileID: 8300000, guid: 9cdba7bcaf2818b42bd933fffab0e0cc, type: 3}
+  - {fileID: 8300000, guid: 1f864a073d713e04dbb65c24a69aa9b5, type: 3}
   jump_strenght: 300
   horizontal_strenght: 3.5
 --- !u!212 &21225712
