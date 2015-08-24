@@ -1259,8 +1259,8 @@ MonoBehaviour:
   defaultSpriteInventory: {fileID: 21300000, guid: 8f61d0154c12d3f4f8ca737f8ace41c2,
     type: 3}
   es: {fileID: 11477444}
-  minSwapDelay: 10000
-  maxSwapDelay: 10000
+  minSwapDelay: 4
+  maxSwapDelay: 12
 --- !u!114 &11437106
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour {
 
 	// TODO :
-	//		  objets
-	//		  saut du monstre
+	//		  inventaire reset cassé
+	//		  quand on spawn dans le trigger de fin pas d'anim
 
 	private GameObject player;
 	private GameObject monster;
@@ -339,11 +339,17 @@ public class GameManager : MonoBehaviour {
 	{
 		if ( player == 1 )
 		{
-			inventorySpriteP1[index].sprite = _sprite;
-		}
+			if ( _sprite != null )
+				inventorySpriteP1[index].sprite = _sprite;
+			else
+				inventorySpriteP1[index].sprite = defaultSpriteInventory;
+        }
 		else if ( player == 2 )
 		{
-			inventorySpriteP2[index].sprite = _sprite;
+			if ( _sprite != null )
+				inventorySpriteP2[index].sprite = _sprite;
+			else
+				inventorySpriteP2[index].sprite = defaultSpriteInventory;
         }
 	}
 
