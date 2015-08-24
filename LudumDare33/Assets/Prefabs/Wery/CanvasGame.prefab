@@ -705,7 +705,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 81796d65d7135e7489d4e468c584ee81, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5742d8b003b80d14596dcf57427548fc, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1256,6 +1256,8 @@ MonoBehaviour:
   - {fileID: 11455174}
   player1Cursor: {fileID: 148066, guid: cc223a1cc9926374d8b039ecf97e62c9, type: 2}
   player2Cursor: {fileID: 109802, guid: 80108bdbfd81a6f458e7f09545436332, type: 2}
+  defaultSpriteInventory: {fileID: 21300000, guid: 8f61d0154c12d3f4f8ca737f8ace41c2,
+    type: 3}
   es: {fileID: 11477444}
   minSwapDelay: 10000
   maxSwapDelay: 10000
