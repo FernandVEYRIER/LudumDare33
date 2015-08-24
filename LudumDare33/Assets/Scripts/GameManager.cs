@@ -5,8 +5,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	// TODO : swap persos
+	// TODO :
 	//		  objets
+	//		  portée du monstre
+	//		  saut du monstre
 
 	private GameObject player;
 	private GameObject monster;
@@ -32,7 +34,12 @@ public class GameManager : MonoBehaviour {
 	public GameObject player2Cursor;
 	[Header("")]
 	public EventSystem es;
-	
+	// Détermine l'intervalle de temps pour le swap
+	public float minSwapDelay;
+	public float maxSwapDelay;
+
+	private float currentSwapDelay;
+
 	private bool isResumingGame;
 	private float resumeDelay = 3;
 	private float currentElapsedTime;
@@ -82,6 +89,8 @@ public class GameManager : MonoBehaviour {
 		cursorP2TargetID = 2;
 
 		isGameRunning = true;
+
+		currentSwapDelay = Random.Range( minSwapDelay, maxSwapDelay + 1 );
 	}
 
 	public void SpawnPlayer( Object player, Vector3 position, int playerType )
@@ -105,50 +114,44 @@ public class GameManager : MonoBehaviour {
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
 		}
-		//else
-		//{
-			// Si la cible du curseur est le héros
-			if ( cursorP1TargetID == 1 && player != null )
-				targetCursor1 = player.transform.position + new Vector3(0, .45f, 0);
-			else if ( cursorP1TargetID == 2 && monster != null )
-				targetCursor1 = monster.transform.position + new Vector3(0, 0.8f, 0);
 
-			// Si on ne change pas de curseur, il suit sa cible
-			if ( !isSwitchingCursor )
-				player1CursorInstance.transform.position = targetCursor1;
-			// Sinon il va vers l'autre joueur
-			else
+		// Si la cible du curseur est le héros
+		if ( cursorP1TargetID == 1 && player != null )
+			targetCursor1 = player.transform.position + new Vector3(0, .45f, 0);
+		else if ( cursorP1TargetID == 2 && monster != null )
+			targetCursor1 = monster.transform.position + new Vector3(0, 0.8f, 0);
+		// Si on ne change pas de curseur, il suit sa cible
+		if ( !isSwitchingCursor )
+		{
+			player1CursorInstance.transform.position = targetCursor1;
+		}
+		// Sinon il va vers l'autre joueur
+		else
+		{
+			player1CursorInstance.transform.position = Vector3.SmoothDamp( player1CursorInstance.transform.position,
+			                                                              targetCursor1, ref currentVelCursorP1, 0.12f );
+			// Si la distance vers la cible est très petite (ctb) on stoppe le switch
+			if ( Mathf.Abs ( Vector3.Distance( player1CursorInstance.transform.position, targetCursor1 ) ) < 0.1f )
 			{
-				player1CursorInstance.transform.position = Vector3.SmoothDamp( player1CursorInstance.transform.position,
-				                                                              targetCursor1, ref currentVelCursorP1, 0.12f );
-				// Si la distance vers la cible est très petite (ctb) on stoppe le switch
-				if ( Mathf.Abs ( Vector3.Distance( player1CursorInstance.transform.position, targetCursor1 ) ) < 0.1f )
-				{
-					isSwitchingCursor = false;
-				}
+				isSwitchingCursor = false;
 			}
-		//}
+		}
 
 		if ( monster == null )
 		{
 			monster = GameObject.FindGameObjectWithTag("Monster");
 		}
-		//else
-		//{
-			if ( cursorP2TargetID == 1 && player != null )
-				targetCursor2 = player.transform.position + new Vector3(0, .45f, 0);
-			else if ( cursorP2TargetID == 2 && monster != null )
-				targetCursor2 = monster.transform.position + new Vector3(0, 0.8f, 0);
-			//Debug.Log(target);
-
-            if ( !isSwitchingCursor )
-				player2CursorInstance.transform.position = targetCursor2;
-			else
-			{
-				player2CursorInstance.transform.position = Vector3.SmoothDamp( player2CursorInstance.transform.position,
-				                                                              targetCursor2, ref currentVelCursorP2, 0.12f );
-			}
-        //}
+		if ( cursorP2TargetID == 1 && player != null )
+			targetCursor2 = player.transform.position + new Vector3(0, .45f, 0);
+		else if ( cursorP2TargetID == 2 && monster != null )
+			targetCursor2 = monster.transform.position + new Vector3(0, 0.8f, 0);
+           if ( !isSwitchingCursor )
+			player2CursorInstance.transform.position = targetCursor2;
+		else
+		{
+			player2CursorInstance.transform.position = Vector3.SmoothDamp( player2CursorInstance.transform.position,
+			                                                              targetCursor2, ref currentVelCursorP2, 0.12f );
+		}
 
 		if ( !isGameRunning )
 		{
@@ -157,6 +160,17 @@ public class GameManager : MonoBehaviour {
 			if ( monster != null )
 				monster.GetComponent<MonsterController>().IsDead = true;
         }
+
+		// Si le delay de swap expire, on swap les joueurs et on re génère un délai de swap
+		if ( currentSwapDelay >= 0 )
+		{
+			currentSwapDelay -= Time.deltaTime;
+		}
+		else
+		{
+			currentSwapDelay = Random.Range( minSwapDelay, maxSwapDelay + 1);
+			SwitchPlayers();
+		}
 
 		if ( Input.GetKeyDown( KeyCode.F12 ) )
 		{
