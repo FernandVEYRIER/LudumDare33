@@ -12,6 +12,7 @@ public class TryRespawnPawn : MonoBehaviour {
 	private float timeUntilSpawn;
 	private GameObject gm;
 	private int playerID;
+	private bool use = false;
 
 	void Start()
 	{
@@ -21,8 +22,10 @@ public class TryRespawnPawn : MonoBehaviour {
 
 	void OnTriggerEnter2D( Collider2D col )
 	{
-		if ( col.gameObject.tag == "ground" )
+		if (col.gameObject.tag == "ground") {
+			use = false;
 			lastValidPlateform = col.gameObject.transform.position;
+		}
 	}
 
 	void Update()
@@ -83,6 +86,14 @@ public class TryRespawnPawn : MonoBehaviour {
 		set
 		{
 			lastValidPlateform = value; 
+		}
+	}
+	public bool Use
+	{
+		get { return use; }
+		set
+		{
+			use = value; 
 		}
 	}
 }
