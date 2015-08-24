@@ -316,7 +316,8 @@ public class GameManager : MonoBehaviour {
 		{
 			Debug.Log("Human " + playerName + " wins !" );
 			canvasVictoryText.text = "Human " + playerName + " wins !";
-			player.GetComponent<PlayerController>().Lives();
+			if ( player != null )
+				player.GetComponent<PlayerController>().Lives();
         }
 		isGameRunning = false;
 		GameObject.Find ("MainCameraHolder").GetComponent<CameraController>().speed = 0;
