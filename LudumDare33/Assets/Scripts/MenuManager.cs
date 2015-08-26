@@ -41,10 +41,11 @@ public class MenuManager : MonoBehaviour {
 			{
 				if (Input.GetKeyDown(kcode))
 				{
-					//Debug.Log("KeyCode down: " + kcode);
 					if ( keyClicked != null )
 					{
 						keyClicked.transform.GetChild(0).GetComponent<Text>().text = kcode.ToString();
+						// TODO : mettre le bon axe
+						CustomInput.AddImput( "Horizontal", kcode.ToString(), kcode.ToString() );
 						keyClicked = null;
 						isBindingKey = false;
 						es.SetSelectedGameObject( es.firstSelectedGameObject );
