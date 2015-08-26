@@ -14,7 +14,6 @@ public static class CustomInput {
 	// essaye de load une sauvegarde, met des par défaut le cas échéant
 	static CustomInput()
 	{
-		// Fix : à remplacer par des playerprefs
 		string[] str = new string[2];
 
 		// Player 1
@@ -24,12 +23,14 @@ public static class CustomInput {
 		keyMap.Add ( "Jump", new MyKeys(ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1])));
 		str = PlayerPrefs.GetString( "Fire1", "Mouse0|" ).Split('|');
 		keyMap.Add ( "Fire1", new MyKeys(ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1])) );
-		str = PlayerPrefs.GetString( "Item1", "Alpha1|" ).Split('|');
-		keyMap.Add ( "Item1", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
-		str = PlayerPrefs.GetString( "Item2", "Alpha2|" ).Split('|');
-		keyMap.Add ( "Item2", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
-		str = PlayerPrefs.GetString( "Item3", "Alpha3|" ).Split('|');
-		keyMap.Add ( "Item3", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		str = PlayerPrefs.GetString( "item_1", "Alpha1|" ).Split('|');
+		keyMap.Add ( "item_1", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		str = PlayerPrefs.GetString( "item_2", "Alpha2|" ).Split('|');
+		keyMap.Add ( "item_2", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		str = PlayerPrefs.GetString( "item_2", "Alpha3|" ).Split('|');
+		keyMap.Add ( "item_3", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		str = PlayerPrefs.GetString( "Dash", "A|" ).Split('|');
+		keyMap.Add ( "Dash", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
 
 		// Player 2
 		str = PlayerPrefs.GetString( "HorizontalAlt", "RightArrow|LeftArrow" ).Split('|');
@@ -38,12 +39,14 @@ public static class CustomInput {
 		keyMap.Add ( "JumpAlt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
 		str = PlayerPrefs.GetString( "Fire1Alt", "Keypad0|" ).Split('|');
 		keyMap.Add ( "Fire1Alt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
-		str = PlayerPrefs.GetString( "Item1Alt", "Keypad1|" ).Split('|');
-		keyMap.Add ( "Item1Alt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
-		str = PlayerPrefs.GetString( "Item2Alt", "Keypad2|" ).Split('|');
-		keyMap.Add ( "Item2Alt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
-		str = PlayerPrefs.GetString( "Item3Alt", "Keypad3|" ).Split('|');
-		keyMap.Add ( "Item3Alt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		str = PlayerPrefs.GetString( "item_1Alt", "Keypad1|" ).Split('|');
+		keyMap.Add ( "item_1Alt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		str = PlayerPrefs.GetString( "item_2Alt", "Keypad2|" ).Split('|');
+		keyMap.Add ( "item_2Alt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		str = PlayerPrefs.GetString( "item_3Alt", "Keypad3|" ).Split('|');
+		keyMap.Add ( "item_3Alt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		str = PlayerPrefs.GetString( "DashAlt", "LeftShift|" ).Split('|');
+		keyMap.Add ( "DashAlt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
 	}
 
 	public static KeyCode ConvertStringToKeycode( string keyCode )

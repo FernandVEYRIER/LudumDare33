@@ -55,10 +55,10 @@ public abstract class BasicController : MonoBehaviour {
 		imputName.Add( "Fire1" );
 		imputName.Add( "Jump" );
 		imputName.Add( "Horizontal" );
-		imputName.Add("item_1");
-		imputName.Add("item_2");
-		imputName.Add("item_3");
-		imputName.Add("Dash");
+		imputName.Add( "item_1" );
+		imputName.Add( "item_2" );
+		imputName.Add( "item_3" );
+		imputName.Add( "Dash" );
 		// Les binds sont gérés par le game manager
 
 		// Player ID est initialisé dans les classes enfant
@@ -115,11 +115,11 @@ public abstract class BasicController : MonoBehaviour {
 			doubleJumped = false;
         }
 
-		animator.SetFloat( animHorizontalVel, Input.GetAxis (keyBinds[("Horizontal")] ) );
+		animator.SetFloat( animHorizontalVel, CustomInput.GetAxis (keyBinds[("Horizontal")] ) );
 		animator.SetFloat( animVerticalVel, Mathf.Abs(this.GetComponent<Rigidbody2D>().velocity.y ));
 		#endregion
 
-		if (jump.GetComponent<Jump>().getCanJump() && Input.GetAxis (keyBinds["Jump"]) != 0 && !timerJump) {
+		if (jump.GetComponent<Jump>().getCanJump() && CustomInput.GetAxis (keyBinds["Jump"]) != 0 && !timerJump) {
 		    StartCoroutine("timer_jump");
 			this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jump_strenght));
@@ -127,20 +127,20 @@ public abstract class BasicController : MonoBehaviour {
 		if (jump.GetComponent<Jump> ().getCanJump ()) {
 			this.GetComponent<Rigidbody2D>().velocity = new Vector2(0, this.GetComponent<Rigidbody2D>().velocity.y);
 		}
-		if (Input.GetAxis (keyBinds["Horizontal"]) != 0 && !jump.GetComponent<Jump> ().getCanJump () && !WallJump) {
+		if (CustomInput.GetAxis (keyBinds["Horizontal"]) != 0 && !jump.GetComponent<Jump> ().getCanJump () && !WallJump) {
 
-			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis (keyBinds["Horizontal"]) * 0.8f,0));	
+			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * CustomInput.GetAxis (keyBinds["Horizontal"]) * 0.8f,0));	
 		}
-		if (Input.GetAxis (keyBinds["Horizontal"]) != 0 && jump.GetComponent<Jump> ().getCanJump ()) {
-			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * Input.GetAxis (keyBinds["Horizontal"]),0));
+		if (CustomInput.GetAxis (keyBinds["Horizontal"]) != 0 && jump.GetComponent<Jump> ().getCanJump ()) {
+			this.transform.Translate(new Vector2(horizontal_strenght * Time.deltaTime * CustomInput.GetAxis (keyBinds["Horizontal"]),0));
 		}
-		if (Input.GetAxis (keyBinds["Horizontal"]) < 0) {
+		if (CustomInput.GetAxis (keyBinds["Horizontal"]) < 0) {
 			this.transform.localScale = new Vector2(scale, this.transform.localScale.y);
-		} else if (Input.GetAxis (keyBinds["Horizontal"]) > 0) {
+		} else if (CustomInput.GetAxis (keyBinds["Horizontal"]) > 0) {
 			this.transform.localScale = new Vector2(scale * -1, this.transform.localScale.y);
 		}
 
-		if ( Input.GetAxis( keyBinds["Fire1"] ) == 1 && attackCurrentDelay <= 0 )
+		if ( CustomInput.GetAxis( keyBinds["Fire1"] ) == 1 && attackCurrentDelay <= 0 )
 		{
 			Attack();
 		}

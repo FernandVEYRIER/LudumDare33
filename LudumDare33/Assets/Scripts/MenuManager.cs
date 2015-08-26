@@ -35,6 +35,7 @@ public class MenuManager : MonoBehaviour {
 
 	void Update()
 	{
+		Debug.Log( CustomInput.GetAxis( "HorizontalAlt" ) );
 		if ( keyClicked != null && isBindingKey )
 		{
 			foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
