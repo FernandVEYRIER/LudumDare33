@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System;
 
 public class MenuManager : MonoBehaviour {
 
@@ -17,6 +18,9 @@ public class MenuManager : MonoBehaviour {
 
 	private int currentButtonSelected;
 
+	private bool isBindingKey;
+	private GameObject keyClicked;
+
 	void Start()
 	{
 		currentButtonSelected = 0;
@@ -27,6 +31,36 @@ public class MenuManager : MonoBehaviour {
 		soundVolume.value = PlayerPrefs.GetFloat( "MasterVolume", 1 );
 		playerName[0].text = PlayerPrefs.GetString( "Player1", "Player1" );
 		playerName[1].text = PlayerPrefs.GetString( "Player2", "Player2" );
+	}
+
+	void Update()
+	{
+		if ( keyClicked != null && isBindingKey )
+		{
+			foreach(KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+			{
+				if (Input.GetKeyDown(kcode))
+				{
+					//Debug.Log("KeyCode down: " + kcode);
+					if ( keyClicked != null )
+					{
+						keyClicked.transform.GetChild(0).GetComponent<Text>().text = kcode.ToString();
+						keyClicked = null;
+						isBindingKey = false;
+						es.SetSelectedGameObject( es.firstSelectedGameObject );
+					}
+				}
+			}
+		}
+		else if ( keyClicked != null && !isBindingKey )
+			isBindingKey = true;
+	}
+
+	public void ChangeBinding( GameObject keyObj )
+	{
+		keyClicked = keyObj;
+		isBindingKey = false;
+		es.SetSelectedGameObject( null );
 	}
 
 	public void ChangeSelectedButton( int id )
