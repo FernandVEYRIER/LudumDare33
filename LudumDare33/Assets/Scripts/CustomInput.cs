@@ -127,7 +127,6 @@ public static class CustomInput {
 		// Cas particulier pour les axes horizontaux, qui ne sont pas des bouttons dans le cas des manettes
 		if ( (axisName == "Horizontal" && !isPlayer1UsingKeyboard) || (axisName == "HorizontalAlt" && !isPlayer2UsingKeyboard) )
 		{
-			Debug.Log(axisName);
 			if ( Input.GetAxis( "HorizontalAlt" ) > 0 )
 				return 1;
 			else if ( Input.GetAxis( "HorizontalAlt" ) < 0 )
