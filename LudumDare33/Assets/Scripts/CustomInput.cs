@@ -6,7 +6,13 @@ using System.Collections.Generic;
 /// Custom input.
 /// Cette classe remplace Input de Unity, qui ne permet pas de bind des touches en jeu
 /// </summary>
+using System;
+
+
 public static class CustomInput {
+
+	public static bool isPlayer1UsingKeyboard;
+	public static bool isPlayer2UsingKeyboard;
 
 	private static Dictionary<string, MyKeys> keyMap = new Dictionary<string, MyKeys>();
 
@@ -31,6 +37,7 @@ public static class CustomInput {
 		keyMap.Add ( "item_3", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
 		str = PlayerPrefs.GetString( "Dash", "A|" ).Split('|');
 		keyMap.Add ( "Dash", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		isPlayer1UsingKeyboard = Convert.ToBoolean( PlayerPrefs.GetInt( "isPlayer1UsingKeyboard", 0 ) );
 
 		// Player 2
 		str = PlayerPrefs.GetString( "HorizontalAlt", "RightArrow|LeftArrow" ).Split('|');
@@ -47,6 +54,7 @@ public static class CustomInput {
 		keyMap.Add ( "item_3Alt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
 		str = PlayerPrefs.GetString( "DashAlt", "LeftShift|" ).Split('|');
 		keyMap.Add ( "DashAlt", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
+		isPlayer2UsingKeyboard = Convert.ToBoolean( PlayerPrefs.GetInt( "isPlayer2UsingKeyboard", 0 ) );
 	}
 
 	public static KeyCode ConvertStringToKeycode( string keyCode )
@@ -62,8 +70,10 @@ public static class CustomInput {
 		foreach ( var obj in keyMap )
 		{
 			PlayerPrefs.SetString( obj.Key, obj.Value.positiveKey + "|" + obj.Value.negativeKey );
-			Debug.Log( "Saved : " + obj.Key + "=" + obj.Value.positiveKey + "|" + obj.Value.negativeKey );
+			//Debug.Log( "Saved : " + obj.Key + "=" + obj.Value.positiveKey + "|" + obj.Value.negativeKey );
 		}
+		PlayerPrefs.SetInt( "isPlayer1UsingKeyboard", Convert.ToInt32(isPlayer1UsingKeyboard) );
+		PlayerPrefs.SetInt( "isPlayer2UsingKeyboard", Convert.ToInt32(isPlayer2UsingKeyboard) );
 	}
 
 	/// <summary>
@@ -85,7 +95,6 @@ public static class CustomInput {
 
 	public static void AddImput( string inputName, string posVal, string negVal )
 	{
-		//KeyCode thisKeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), "Whatever") ;
 		if ( keyMap.ContainsKey( inputName ) )
 		{
 			if ( posVal != "" )
@@ -108,11 +117,26 @@ public static class CustomInput {
 
 	public static float GetAxis( string axisName )
 	{
+		// Si l'input demandé n'existe pas
 		if ( !keyMap.ContainsKey(axisName) )
 		{
 			Debug.LogWarning( axisName + " is not defined." );
 			return 0;
 		}
+
+		// Cas particulier pour les axes horizontaux, qui ne sont pas des bouttons dans le cas des manettes
+		if ( (axisName == "Horizontal" && !isPlayer1UsingKeyboard) || (axisName == "HorizontalAlt" && !isPlayer2UsingKeyboard) )
+		{
+			Debug.Log(axisName);
+			if ( Input.GetAxis( "HorizontalAlt" ) > 0 )
+				return 1;
+			else if ( Input.GetAxis( "HorizontalAlt" ) < 0 )
+				return -1;
+			else
+				return 0;
+		}
+
+		// Sinon on vérifie avec les occurences du tableau si le bouton est actuellement utilisé
 		if ( keyMap[ axisName ].positiveKey != KeyCode.None && Input.GetKey( keyMap[ axisName ].positiveKey ) )
 		{
 			return 1;

@@ -40,21 +40,27 @@ public class MenuManager : MonoBehaviour {
 		// Initialise tous les boutons en fonction des binds actuels
 		// Ceux du P1
 		buttonsP1[0].GetComponentInChildren<Text>().text = CustomInput.GetInput( "Horizontal", false );
+		buttonsP1[0].GetComponentInChildren<Button>().interactable = CustomInput.isPlayer1UsingKeyboard;
 		buttonsP1[1].GetComponentInChildren<Text>().text = CustomInput.GetInput( "Horizontal", true );
+		buttonsP1[1].GetComponentInChildren<Button>().interactable = CustomInput.isPlayer1UsingKeyboard;
 		buttonsP1[2].GetComponentInChildren<Text>().text = CustomInput.GetInput( "Jump", true );
 		buttonsP1[3].GetComponentInChildren<Text>().text = CustomInput.GetInput( "Fire1", true );
 		buttonsP1[4].GetComponentInChildren<Text>().text = CustomInput.GetInput( "item_1", true );
 		buttonsP1[5].GetComponentInChildren<Text>().text = CustomInput.GetInput( "item_2", true );
 		buttonsP1[6].GetComponentInChildren<Text>().text = CustomInput.GetInput( "item_3", true );
+		buttonsP1[7].GetComponentInChildren<Toggle>().isOn = CustomInput.isPlayer1UsingKeyboard;
 
 		// Ceux du P2
 		buttonsP2[0].GetComponentInChildren<Text>().text = CustomInput.GetInput( "HorizontalAlt", false );
+		buttonsP2[0].GetComponentInChildren<Button>().interactable = CustomInput.isPlayer2UsingKeyboard;
 		buttonsP2[1].GetComponentInChildren<Text>().text = CustomInput.GetInput( "HorizontalAlt", true );
+		buttonsP2[1].GetComponentInChildren<Button>().interactable = CustomInput.isPlayer2UsingKeyboard;
 		buttonsP2[2].GetComponentInChildren<Text>().text = CustomInput.GetInput( "JumpAlt", true );
 		buttonsP2[3].GetComponentInChildren<Text>().text = CustomInput.GetInput( "Fire1Alt", true );
 		buttonsP2[4].GetComponentInChildren<Text>().text = CustomInput.GetInput( "item_1Alt", true );
 		buttonsP2[5].GetComponentInChildren<Text>().text = CustomInput.GetInput( "item_2Alt", true );
 		buttonsP2[6].GetComponentInChildren<Text>().text = CustomInput.GetInput( "item_3Alt", true );
+		buttonsP2[7].GetComponentInChildren<Toggle>().isOn = CustomInput.isPlayer2UsingKeyboard;
 	}
 
 	void Update()
@@ -92,10 +98,10 @@ public class MenuManager : MonoBehaviour {
 								CustomInput.AddImput( "item_3", kcode.ToString(), "" );
 								break;
 							case "ButtonLeftAlt" :
-							CustomInput.AddImput( "HorizontalAlt", CustomInput.GetInput( "Horizontal", true ), kcode.ToString() );
+							CustomInput.AddImput( "HorizontalAlt", CustomInput.GetInput( "HorizontalAlt", true ), kcode.ToString() );
 								break;
 							case "ButtonRightAlt" :
-								CustomInput.AddImput( "HorizontalAlt", kcode.ToString(), CustomInput.GetInput( "Horizontal", false ) );
+								CustomInput.AddImput( "HorizontalAlt", kcode.ToString(), CustomInput.GetInput( "HorizontalAlt", false ) );
 								break;
 							case "ButtonJumpAlt" :
 								CustomInput.AddImput( "JumpAlt", kcode.ToString(), "" );
@@ -122,6 +128,15 @@ public class MenuManager : MonoBehaviour {
 		}
 		else if ( keyClicked != null && !isBindingKey )
 			isBindingKey = true;
+	}
+
+	public void SetPlayerUsingController( GameObject toggleObj )
+	{
+		if ( toggleObj.name == "ToggleP1" )
+			CustomInput.isPlayer1UsingKeyboard = toggleObj.GetComponent<Toggle>().isOn;
+		if ( toggleObj.name == "ToggleP2" )
+			CustomInput.isPlayer2UsingKeyboard = toggleObj.GetComponent<Toggle>().isOn;
+		CustomInput.SaveInput();
 	}
 
 	public void ChangeBinding( GameObject keyObj )
