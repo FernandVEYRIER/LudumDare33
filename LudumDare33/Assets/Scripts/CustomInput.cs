@@ -62,7 +62,7 @@ public static class CustomInput {
 		foreach ( var obj in keyMap )
 		{
 			PlayerPrefs.SetString( obj.Key, obj.Value.positiveKey + "|" + obj.Value.negativeKey );
-			//Debug.Log( "Saved : " + obj.Key + "=" + obj.Value.positiveKey + "|" + obj.Value.negativeKey );
+			Debug.Log( "Saved : " + obj.Key + "=" + obj.Value.positiveKey + "|" + obj.Value.negativeKey );
 		}
 	}
 

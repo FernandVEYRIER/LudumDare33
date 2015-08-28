@@ -3881,6 +3881,7 @@ MonoBehaviour:
   - {fileID: 136000}
   settingsPannel: {fileID: 151604}
   creditsPannel: {fileID: 114050}
+  keyBindsPannel: {fileID: 115486}
   playerName:
   - {fileID: 11480546}
   - {fileID: 11432300}

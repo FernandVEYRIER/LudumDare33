@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour {
 	[Header("Pannels")]
 	public GameObject settingsPannel;
 	public GameObject creditsPannel;
+	public GameObject keyBindsPannel;
 	public InputField [] playerName;
 	public Slider soundVolume;
 
@@ -22,6 +23,7 @@ public class MenuManager : MonoBehaviour {
 
 	private bool isBindingKey;
 	private GameObject keyClicked;
+	private GameObject lastButtonSelected;
 
 	void Start()
 	{
@@ -29,6 +31,7 @@ public class MenuManager : MonoBehaviour {
 		ChangeSelectedButton( currentButtonSelected );
 		settingsPannel.SetActive( false );
 		creditsPannel.SetActive( false );
+		keyBindsPannel.SetActive( true );
 
 		soundVolume.value = PlayerPrefs.GetFloat( "MasterVolume", 1 );
 		playerName[0].text = PlayerPrefs.GetString( "Player1", "Player1" );
@@ -68,10 +71,10 @@ public class MenuManager : MonoBehaviour {
 						switch ( keyClicked.name )
 						{
 							case "ButtonLeft" :
-								CustomInput.AddImput( "Horizontal", CustomInput.GetInput( "Horizontal", false ), kcode.ToString() );
+								CustomInput.AddImput( "Horizontal", CustomInput.GetInput( "Horizontal", true ), kcode.ToString() );
 								break;
 							case "ButtonRight" :
-								CustomInput.AddImput( "Horizontal", kcode.ToString(), CustomInput.GetInput( "Horizontal", true ) );
+								CustomInput.AddImput( "Horizontal", kcode.ToString(), CustomInput.GetInput( "Horizontal", false ) );
 								break;
 							case "ButtonJump" :
 								CustomInput.AddImput( "Jump", kcode.ToString(), "" );
@@ -89,10 +92,10 @@ public class MenuManager : MonoBehaviour {
 								CustomInput.AddImput( "item_3", kcode.ToString(), "" );
 								break;
 							case "ButtonLeftAlt" :
-							CustomInput.AddImput( "HorizontalAlt", CustomInput.GetInput( "Horizontal", false ), kcode.ToString() );
+							CustomInput.AddImput( "HorizontalAlt", CustomInput.GetInput( "Horizontal", true ), kcode.ToString() );
 								break;
 							case "ButtonRightAlt" :
-								CustomInput.AddImput( "HorizontalAlt", kcode.ToString(), CustomInput.GetInput( "Horizontal", true ) );
+								CustomInput.AddImput( "HorizontalAlt", kcode.ToString(), CustomInput.GetInput( "Horizontal", false ) );
 								break;
 							case "ButtonJumpAlt" :
 								CustomInput.AddImput( "JumpAlt", kcode.ToString(), "" );
@@ -112,7 +115,7 @@ public class MenuManager : MonoBehaviour {
 						}
 						keyClicked = null;
 						isBindingKey = false;
-						es.SetSelectedGameObject( es.firstSelectedGameObject );
+						es.SetSelectedGameObject( lastButtonSelected );
 					}
 				}
 			}
@@ -125,6 +128,7 @@ public class MenuManager : MonoBehaviour {
 	{
 		keyClicked = keyObj;
 		isBindingKey = false;
+		lastButtonSelected = es.currentSelectedGameObject;
 		es.SetSelectedGameObject( null );
 	}
 
@@ -151,10 +155,12 @@ public class MenuManager : MonoBehaviour {
 		if ( settingsPannel.activeSelf )
 		{
 			settingsPannel.SetActive( false );
+			keyBindsPannel.SetActive( true );
 		}
 		else
 		{
 			settingsPannel.SetActive( true );
+			keyBindsPannel.SetActive( false );
 		}
 	}
 
