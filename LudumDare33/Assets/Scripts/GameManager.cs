@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
-	// TODO : éclair cassé
+	// TODO :
 	//		  inventaire reset cassé
 	//		  quand on spawn dans le trigger de fin pas d'anim
 

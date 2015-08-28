@@ -27,7 +27,7 @@ public static class CustomInput {
 		keyMap.Add ( "item_1", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
 		str = PlayerPrefs.GetString( "item_2", "Alpha2|" ).Split('|');
 		keyMap.Add ( "item_2", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
-		str = PlayerPrefs.GetString( "item_2", "Alpha3|" ).Split('|');
+		str = PlayerPrefs.GetString( "item_3", "Alpha3|" ).Split('|');
 		keyMap.Add ( "item_3", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
 		str = PlayerPrefs.GetString( "Dash", "A|" ).Split('|');
 		keyMap.Add ( "Dash", new MyKeys( ConvertStringToKeycode(str[0]), ConvertStringToKeycode(str[1]) ) );
@@ -62,7 +62,7 @@ public static class CustomInput {
 		foreach ( var obj in keyMap )
 		{
 			PlayerPrefs.SetString( obj.Key, obj.Value.positiveKey + "|" + obj.Value.negativeKey );
-			Debug.Log( "Saved : " + obj.Key + "=" + obj.Value.positiveKey + "|" + obj.Value.negativeKey );
+			//Debug.Log( "Saved : " + obj.Key + "=" + obj.Value.positiveKey + "|" + obj.Value.negativeKey );
 		}
 	}
 
@@ -88,8 +88,14 @@ public static class CustomInput {
 		//KeyCode thisKeyCode = (KeyCode) System.Enum.Parse(typeof(KeyCode), "Whatever") ;
 		if ( keyMap.ContainsKey( inputName ) )
 		{
-			keyMap[inputName].positiveKey = (KeyCode) System.Enum.Parse( typeof(KeyCode), posVal );
-			keyMap[inputName].negativeKey = (KeyCode) System.Enum.Parse( typeof(KeyCode), negVal );
+			if ( posVal != "" )
+				keyMap[inputName].positiveKey = (KeyCode) System.Enum.Parse( typeof(KeyCode), posVal );
+			else
+				keyMap[inputName].positiveKey = KeyCode.None;
+			if ( negVal != "" )
+				keyMap[inputName].negativeKey = (KeyCode) System.Enum.Parse( typeof(KeyCode), negVal );
+			else
+				keyMap[inputName].negativeKey = KeyCode.None;
 			SaveInput();
 		}
 		else
